@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 17:24:29 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/17 18:39:40 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/21 14:03:46 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_boolean(char c)
 {
 	if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' ||\
-	 c == 'c' || c == 's')
+	 c == 'c' || c == 's' || c == 'p')
 			return (1);
 	if ((c >= '0' && c <= '9') || (c == '*') || (c == '-') || (c = '.'))
 		return (2);
@@ -38,6 +38,12 @@ void	ft_for_star_zero(va_list ap, t_printf *res, const char *str)
 	if (str[res->i + 1] == '*')
 	{
 		res->stockzero = va_arg(ap, int);
+		if (res->stockzero < 0)
+		{
+			res->stockzero = res->stockzero * -1;
+			res->stockmoins = res->stockzero;
+			res->stockzero = 0;
+		}
 		res->i += 2;
 	}
 	else
@@ -53,4 +59,22 @@ void	ft_for_star_moins(va_list ap, t_printf *res, const char *str)
 	}
 	else
 		res->stockmoins = ft_atoi(str, res);
+	if (str[res->i] == '*')
+	{
+		res->stockmoins = va_arg(ap, int);
+		res->i++;
+	}
+	if (res->stockmoins < 0)
+		res->stockmoins = res->stockmoins * -1;
+	res->stockstar = 0;
+}
+
+void	ft_star_moins(t_printf *res)
+{
+	if (res->stockmoins == 0)
+	{
+		res->stockstar = res->stockstar * -1;
+		res->stockmoins = res->stockstar;
+		res->stockstar = 0;
+	}
 }

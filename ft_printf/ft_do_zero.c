@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 14:17:58 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/17 17:31:30 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/18 09:36:00 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ char	*ft_strjoin_zero(char *s1, char *s2)
 char	*ft_strfjoin_zero(char *s1, char *s2, int mode)
 {
 	char	*ret;
-	int		i;
 
 	ret = ft_strjoin_zero(s1, s2);
 	if (mode == 1 || mode == 3)

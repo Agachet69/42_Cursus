@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 10:33:59 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/17 18:31:51 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/21 14:02:56 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <stdio.h> // a enlever
+# include <limits.h> // a enlever
 # include <unistd.h>
 # include <stdlib.h>
 
@@ -23,29 +24,31 @@ typedef struct	s_printf
 	char car;
 	char *struc;
 	int i;
-	int stockstar;
-	int stockzero;
-	int stockmoins;
-	int stockspaces;
-	int stockprecision;
+	long int stockstar;
+	long int stockzero;
+	long int stockmoins;
+	long int stockspaces;
+	long int stockprecision;
 	int compteur_putnbr;
 	int putnbr_zero;
 	int pourcent;
+	int ireturn;
+	int cas_zero_c;
 }				t_printf;
 
 
 int		ft_printf(const char *str, ...) __attribute__((format(printf,1,2)));
 int		ft_checkstr(t_printf *res, va_list ap);
-void	ft_check_flag(const char *str, t_printf *res);
+void	ft_check_flag(t_printf *res);
 int		ft_searchtype(const char *str, t_printf *res, va_list ap);
 void	ft_search_arg(const char *str, t_printf *res, va_list ap);
 void	ft_putnbr_base(t_printf *res, int nbr, char *base);
 int		ft_strlen(char *src);
 int		ft_putchar(char c, t_printf *res);
 void	ft_putnbr(t_printf *res, int nb);
-void	ft_putunsignednbr_base(t_printf *res, unsigned int nbr, char *base);
+void	ft_putunsigned_base(t_printf *res, unsigned long int nbr, char *base);
 void	ft_putstr_calloc(t_printf *res, char *str);
-void	ft_affadresse(t_printf *res, void *chaine, char *base);
+void	ft_affadresse(t_printf *res, unsigned long chaine, char *base);
 char	*ft_adresse_zero_x();
 char	*ft_itoa_bis(char *str, int len, unsigned long long int tmp, char *base);
 char	*ft_calloc(int count, int size);
@@ -60,8 +63,6 @@ void	ft_do_zero(t_printf *res);
 char	*ft_strfjoin_zero(char *s1, char *s2, int mode);
 char	*ft_strjoin_zero(char *s1, char *s2);
 char	*ft_create_str_zero(int i, t_printf *res);
-char	*ft_checknbr_hexa(int nbr, int compteur, t_printf *res);
-int		ft_base_hexa(t_printf *res, int nbr, char *base);
 void	ft_do_spaces(t_printf *res);
 char	*ft_strfjoin_spaces(char *s1, char *s2, int mode);
 char	*ft_strjoin_spaces(char *s1, char *s2);
@@ -78,5 +79,7 @@ int		ft_boolean(char c);
 void	ft_for_star_moins(va_list ap, t_printf *res, const char *str);
 void	ft_for_star_zero(va_list ap, t_printf *res, const char *str);
 int		ft_boolean_bis(t_printf *res);
+void	ft_star_moins(t_printf *res);
+char	*ft_check_unsigned(unsigned long int nbr, int compteur, t_printf *res);
 
 #endif

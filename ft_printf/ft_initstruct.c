@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 16:04:40 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/17 17:56:38 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/21 13:40:14 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_initstruct(t_printf *res)
 {
-	res->car = 0;
+	res->car = -1;
 	res->struc = 0;
 	res->i = 0;
 	res->stockstar = 0;
@@ -25,6 +25,8 @@ void	ft_initstruct(t_printf *res)
 	res->compteur_putnbr = 0;
 	res->putnbr_zero = 0;
 	res->pourcent = 0;
+	res->ireturn = 0;
+	res->cas_zero_c = 0;
 }
 
 void	ft_re_zero(t_printf *res)
@@ -38,4 +40,5 @@ void	ft_re_zero(t_printf *res)
 	res->stockprecision = -1;
 	res->compteur_putnbr = 0;
 	res->putnbr_zero = 0;
+	res->cas_zero_c = 0;
 }

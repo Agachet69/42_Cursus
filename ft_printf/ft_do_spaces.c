@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 16:00:16 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/17 10:49:49 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/21 14:19:45 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char	*ft_strjoin_spaces(char *s1, char *s2)
 char	*ft_strfjoin_spaces(char *s1, char *s2, int mode)
 {
 	char	*ret;
-	int		i;
 
 	ret = ft_strjoin_spaces(s1, s2);
 	if (mode == 1 || mode == 3)
@@ -86,6 +85,7 @@ void	ft_do_spaces(t_printf *res)
 
 
 	i = ft_strlen(res->struc);
+	i = i + res->cas_zero_c;
 	if (res->stockspaces > 0)
 	{
 		if (res->car == 'd' || res->car == 'i' || res->car == 'u' ||\
@@ -99,5 +99,6 @@ void	ft_do_spaces(t_printf *res)
 				res->struc = ft_strfjoin_spaces(ret, res->struc, 3);
 			}
 		}
+		res->stockspaces = 0;
 	}
 }

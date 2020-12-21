@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 12:53:10 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/17 10:48:36 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/18 15:50:54 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_do_star(t_printf *res)
 {
 	int		i;
 	char	*ret;
-
 
 	i = ft_strlen(res->struc);
 	if (res->stockstar > 0)
@@ -32,5 +31,6 @@ void	ft_do_star(t_printf *res)
 				res->struc = ft_strfjoin_spaces(ret, res->struc, 3);
 			}
 		}
+		res->stockstar = 0;
 	}
 }

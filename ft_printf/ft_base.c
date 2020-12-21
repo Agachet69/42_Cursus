@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 12:51:31 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/17 18:17:20 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/21 10:14:00 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ void	ft_putnbr_base(t_printf *res, int nbr, char *base)
 		res->struc[res->compteur_putnbr] = n;
 		ft_putnbr_base(res, (nb / compteur), base);
 	}
-	if (nb <= compteur && (!(nb < 0)))
+	if (nb < compteur)
 		res->struc[res->compteur_putnbr] = n;
 }

@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 11:13:28 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/17 18:51:45 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/21 11:51:17 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	ft_do_precision(t_printf *res)
 	int		i;
 	char	*ret;
 
-	if (ft_specials(res) == 0)
-		return ;
+
+	ft_specials(res);
 	i = ft_strlen(res->struc);
 	if (res->stockprecision > 0)
 	{
@@ -110,7 +110,7 @@ void	ft_do_precision(t_printf *res)
 		}
 		else if (res->car == 's' && (res->stockprecision < i))
 			res->struc = ft_substr(res->struc, res->stockprecision);
-			res->stockprecision = 0;
-		ft_multy_flags(res);
 	}
+	ft_multy_flags(res);
+	res->stockprecision = 0;
 }

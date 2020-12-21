@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 10:41:12 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/17 11:05:49 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/21 14:07:59 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_do_moins(t_printf *res)
 
 
 	i = ft_strlen(res->struc);
+	i = i + res->cas_zero_c;
 	if (res->stockmoins > 0)
 	{
 		if (res->car == 'd' || res->car == 'i' || res->car == 'u' ||\
@@ -31,6 +32,7 @@ void	ft_do_moins(t_printf *res)
 				ret = ft_create_str_spaces(i);
 				res->struc = ft_strfjoin_spaces(res->struc, ret, 3);
 			}
+		res->stockmoins = 0;
 		}
 	}
 }
