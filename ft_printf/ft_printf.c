@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 11:10:51 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/21 15:03:26 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/22 16:49:30 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ int		ft_checkstr(t_printf *res, va_list ap)
 	else if (res->car == 'i')
 		ft_putnbr_base(res, va_arg(ap, int), "0123456789");
 	else if (res->car == 'u')
-		ft_putunsigned_base(res, va_arg(ap, unsigned int), "0123456789");
+		ft_putun_base(res, va_arg(ap, unsigned int), "0123456789");
 	else if (res->car == 'x')
-		ft_putunsigned_base(res, va_arg(ap, unsigned int), "0123456789abcdef");
+		ft_putun_base(res, va_arg(ap, unsigned int), "0123456789abcdef");
 	else if (res->car == 'X')
-		ft_putunsigned_base(res, va_arg(ap, unsigned int), "0123456789ABCDEF");
+		ft_putun_base(res, va_arg(ap, unsigned int), "0123456789ABCDEF");
 	else if (res->car == 'p')
-		ft_affadresse(res ,va_arg(ap, unsigned long), "0123456789abcdef");
+		ft_affadresse(res, va_arg(ap, unsigned long), "0123456789abcdef");
+	else if (res->car == '%')
+		ft_putchar_calloc_pourcent(res);
 	return (0);
 }
 
@@ -39,12 +41,12 @@ void	ft_check_flag(t_printf *res)
 		ft_do_precision(res);
 	if (res->stockstar != 0)
 		ft_do_star(res);
- 	if (res->stockzero > 0)
- 		ft_do_zero(res);
+	if (res->stockzero > 0)
+		ft_do_zero(res);
 	if (res->stockmoins > 0)
 		ft_do_moins(res);
- 	if (res->stockspaces > 0)
- 		ft_do_spaces(res);
+	if (res->stockspaces > 0)
+		ft_do_spaces(res);
 }
 
 int		ft_searchtype(const char *str, t_printf *res, va_list ap)
@@ -60,39 +62,42 @@ int		ft_searchtype(const char *str, t_printf *res, va_list ap)
 			ft_for_star_zero(ap, res, str);
 		ft_search_arg(str, res, ap);
 	}
-	res->car = str[res->i]; // met le char de la conversion 's' 'd' etc.. dqns la struct
+	res->car = str[res->i];
 	if (ft_checkstr(res, ap) == -1)
-		return (-1); // l'envoie pour savoir la quelle c'est
-	ft_check_flag(res); // agit en fonction des flags
+		return (-1);
+	ft_check_flag(res);
+	if (!res->struc)
+		return (-1);
 	return (0);
 }
 
 void	ft_search_arg(const char *str, t_printf *res, va_list ap)
 {
-		if (str[res->i] == '*')
+	if (str[res->i] == '*')
+	{
+		res->stockstar = va_arg(ap, int);
+		if (res->stockstar < 0)
+			ft_star_moins(res);
+		res->i++;
+	}
+	if (str[res->i] == '-')
+		ft_for_star_moins(ap, res, str);
+	if (str[res->i] >= '0' || str[res->i] <= '9')
+		res->stockspaces = ft_atoim(str, res);
+	if (str[res->i] == '.')
+	{
+		if (str[res->i + 1] == '*')
 		{
-			res->stockstar = va_arg(ap, int);
-			if (res->stockstar < 0)
-				ft_star_moins(res);
-			res->i++;
-		}
-		if (str[res->i] == '-')
-			ft_for_star_moins(ap, res, str);
-		if (str[res->i] >= '0' || str[res->i] <= '9')
-				res->stockspaces = ft_atoim(str, res);
-		if (str[res->i] == '.')
-		{
-			if (str[res->i + 1] == '*')
-			{
-				res->stockprecision = va_arg(ap, int); // faire une fonction pour l'etoile.
-				res->i += 2;
-			}
-			else
-				res->stockprecision = ft_atoi(str, res);
+			res->stockprecision = va_arg(ap, int);
+			res->i += 2;
 		}
 		else
-			return ;
+			res->stockprecision = ft_atoi(str, res);
+	}
+	else
+		return ;
 }
+
 int		ft_printf(const char *str, ...)
 {
 	va_list		ap;
@@ -109,7 +114,7 @@ int		ft_printf(const char *str, ...)
 			res.ireturn = ft_strlen(res.struc) + res.ireturn;
 			if (res.cas_zero_c != 1)
 				ft_putstr(res.struc);
-			// free res.struc
+			free(res.struc);
 		}
 		else
 			res.ireturn = write(1, &str[res.i], 1) + res.ireturn;
@@ -120,19 +125,3 @@ int		ft_printf(const char *str, ...)
 	free(res.struc);
 	return (res.ireturn + res.pourcent);
 }
-
-// int		main(void)
-// {
-// 	char *str = 0;
-// 	int i;
-// 	int j;
-// 	char a;
-// 	a = 'b';
-// 	i = 0;
-// 	//j = 15888779;
-// 	j = printf("lui = --0*%0*.0x*0 \n", -21, LONG_MAX);
-// 	//printf("lui j = %d\n", j);
-// 	i=ft_printf("moi = --0*%0*.0x*0 \n", -21, LONG_MAX);
-// 	//printf("moi j = %d\n", i);
-// 	// return (0);
-// }

@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 14:50:30 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/18 15:18:59 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/23 11:00:23 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,50 +26,60 @@ void	ft_bzero(void *s, int n)
 	}
 }
 
-char	*ft_adresse_zero_x(void)
+char	*ft_adresse_zero_x(int k)
 {
-	char *str;
+	char	*str;
 
-	str = ft_calloc(12, sizeof(char));
+	if (!(str = ft_calloc(k + 3, sizeof(char))))
+		return (0);
 	str[0] = '0';
 	str[1] = 'x';
 	return (str);
 }
 
-void	ft_p_negativ(t_printf *res)
+int		ft_compteur_taille(unsigned long chaine)
 {
 	int i;
+	int k;
 
-	i = 2;
-	while (i < 10)
+	i = 0;
+	k = 0;
+	while (chaine != 0)
 	{
-		res->struc[i] = 'f';
+		chaine = chaine / 16;
 		i++;
+		k++;
 	}
+	if (k == 0 && chaine == 0)
+		i = 1;
+	while (i < 9)
+		i++;
+	i = i + 1;
+	return (i);
 }
 
 void	ft_affadresse(t_printf *res, unsigned long chaine, char *base)
 {
-	char						str[9];
-	int							i;
-	int							j;
+	int		k;
+	char	*str;
+	int		i;
 
-	res->struc = ft_adresse_zero_x();
-	i = 8;
-	while (((chaine / 16) > 0) || (i > 8))
+	k = ft_compteur_taille(chaine);
+	if (!(str = ft_calloc(k, sizeof(char))))
+		return ;
+	k = 0;
+	while (chaine != 0 || k == 0)
 	{
-		str[i] = base[(chaine % 16)];
+		str[k++] = base[(chaine % 16)];
 		chaine = chaine / 16;
-		i--;
 	}
-	str[i] = base[(chaine % 16)];
-	j = 2;
-	while (i < 9)
-	{
-		res->struc[j] = str[i];
-		i++;
-		j++;
-	}
-	res->struc[j] = '\0'; // struc malloc donc a free;
-	return ;
+	str[k] = '\0';
+	if (!(res->struc = ft_adresse_zero_x(k)))
+		return ;
+	i = 2;
+	k--;
+	while (k >= 0)
+		res->struc[i++] = str[k--];
+	res->struc[i] = '\0';
+	free(str);
 }

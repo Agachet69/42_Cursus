@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 12:37:33 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/21 14:57:38 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/22 15:54:28 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int		ft_putchar(char c, t_printf *res)
 	return (0);
 }
 
-char	*ft_check_unsigned(unsigned long int nbr, int compteur, t_printf *res)
+char	*ft_ck_uns(unsigned long int nbr, int compteur, t_printf *res)
 {
-	int i;
-	char *dst;
+	int		i;
+	char	*dst;
 
 	i = 0;
 	if (nbr == 0 && i == 0)
@@ -36,18 +36,19 @@ char	*ft_check_unsigned(unsigned long int nbr, int compteur, t_printf *res)
 		i++;
 	}
 	res->compteur_putnbr = i;
-	dst = ft_calloc((i + 1), sizeof(char));
+	if (!(dst = ft_calloc((i + 1), sizeof(char))))
+		return (0);
 	return (dst);
 }
 
-void	ft_putunsigned_base(t_printf *res, unsigned long int nbr, char *base)
+void	ft_putun_base(t_printf *res, unsigned long int nbr, char *base)
 {
-	unsigned long int			compteur;
-	char		n;
+	unsigned long int	compteur;
+	char				n;
 
 	compteur = ft_strlen(base);
 	if (res->struc == 0)
-		res->struc = ft_check_unsigned(nbr, compteur, res); // a free
+		res->struc = ft_ck_uns(nbr, compteur, res);
 	if (res->putnbr_zero++ == 0)
 		res->struc[res->compteur_putnbr] = '\0';
 	res->compteur_putnbr--;
@@ -70,14 +71,15 @@ void	ft_putstr_calloc(t_printf *res, char *str)
 		str = "(null)";
 	}
 	i = ft_strlen(str);
-	res->struc = ft_calloc((i + 1), sizeof(char));
+	if (!(res->struc = ft_calloc((i + 1), sizeof(char))))
+		return ;
 	i = 0;
 	while (str[i])
 	{
 		res->struc[i] = str[i];
 		i++;
 	}
-	res->struc[i] = '\0'; // a free
+	res->struc[i] = '\0';
 }
 
 void	ft_putstr(char *s)

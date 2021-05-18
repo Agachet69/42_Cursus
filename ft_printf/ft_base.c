@@ -6,13 +6,11 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 12:51:31 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/21 10:14:00 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/22 11:43:10 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-
 
 int		ft_strlen(char *src)
 {
@@ -28,9 +26,9 @@ int		ft_strlen(char *src)
 
 char	*ft_checknbr(int nbr, int compteur, t_printf *res)
 {
-	int i;
-	long int nb;
-	char *dst;
+	int			i;
+	long int	nb;
+	char		*dst;
 
 	nb = nbr;
 	i = 0;
@@ -60,7 +58,7 @@ void	ft_putnbr_base(t_printf *res, int nbr, char *base)
 	nb = (long int)nbr;
 	compteur = ft_strlen(base);
 	if (res->struc == 0)
-		res->struc = ft_checknbr(nbr, compteur, res); // a free
+		res->struc = ft_checknbr(nbr, compteur, res);
 	if (res->putnbr_zero++ == 0)
 		res->struc[res->compteur_putnbr] = '\0';
 	if (nb < 0)

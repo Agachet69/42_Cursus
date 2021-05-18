@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 13:47:44 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/21 14:07:58 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/22 15:53:15 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_cas_zero_c(t_printf *res)
 	if (res->stockspaces > 0 || res->stockstar > 0)
 	{
 		ft_do_spaces(res);
-		ft_putstr(res->struc); // peu etre un leak
+		ft_putstr(res->struc);
 		write(1, &i, 1);
 		res->stockspaces = 0;
 	}
@@ -52,15 +52,21 @@ void	ft_cas_zero_c(t_printf *res)
 
 void	ft_putchar_calloc(t_printf *res, char c)
 {
-	res->struc = ft_calloc(2, sizeof(char));
-	if (!res->struc)
+	if (!(res->struc = ft_calloc(2, sizeof(char))))
 		return ;
 	res->struc[0] = c;
-	res->struc[1] = '\0';  // a free
+	res->struc[1] = '\0';
 	if (c == 0)
 	{
 		ft_cas_zero_c(res);
 		return ;
 	}
-	//printf("%s\n", res->struc);
+}
+
+void	ft_putchar_calloc_pourcent(t_printf *res)
+{
+	if (!(res->struc = ft_calloc(2, sizeof(char))))
+		return ;
+	res->struc[0] = '%';
+	res->struc[1] = '\0';
 }

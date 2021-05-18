@@ -6,13 +6,13 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 16:00:16 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/21 14:19:45 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/22 15:43:12 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_atoim(const char *str, t_printf *res)
+int		ft_atoim(const char *str, t_printf *res)
 {
 	int	result;
 
@@ -30,7 +30,8 @@ char	*ft_create_str_spaces(int i)
 	int		j;
 	char	*ret;
 
-	ret = ft_calloc((i + 1), sizeof(char));
+	if (!(ret = ft_calloc((i + 1), sizeof(char))))
+		return (0);
 	j = 0;
 	while (i > j)
 	{
@@ -70,7 +71,8 @@ char	*ft_strfjoin_spaces(char *s1, char *s2, int mode)
 {
 	char	*ret;
 
-	ret = ft_strjoin_spaces(s1, s2);
+	if (!(ret = ft_strjoin_spaces(s1, s2)))
+		return (0);
 	if (mode == 1 || mode == 3)
 		free(s1);
 	if (mode == 2 || mode == 3)
@@ -83,20 +85,23 @@ void	ft_do_spaces(t_printf *res)
 	int		i;
 	char	*ret;
 
-
 	i = ft_strlen(res->struc);
 	i = i + res->cas_zero_c;
 	if (res->stockspaces > 0)
 	{
 		if (res->car == 'd' || res->car == 'i' || res->car == 'u' ||\
 			res->car == 'x' || res->car == 'X' || res->car == 'c' ||\
-			res->car == 's' || res->car == 'p')
+			res->car == 's' || res->car == 'p' || res->car == '%')
 		{
 			if (i < res->stockspaces)
 			{
 				i = res->stockspaces - i;
-				ret = ft_create_str_spaces(i);
-				res->struc = ft_strfjoin_spaces(ret, res->struc, 3);
+				if (!(ret = ft_create_str_spaces(i)))
+					return ;
+				if (!(res->struc = ft_strfjoin_spaces(ret, res->struc, 3)))
+					return ;
+				if (!res->struc)
+					return ;
 			}
 		}
 		res->stockspaces = 0;

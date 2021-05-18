@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 12:53:10 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/18 15:50:54 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/22 15:50:11 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ void	ft_do_star(t_printf *res)
 			if (i < res->stockstar)
 			{
 				i = res->stockstar - i;
-				ret = ft_create_str_spaces(i);
-				res->struc = ft_strfjoin_spaces(ret, res->struc, 3);
+				if (!(ret = ft_create_str_spaces(i)))
+					return ;
+				if (!(res->struc = ft_strfjoin_spaces(ret, res->struc, 3)))
+					return ;
+				if (!res->struc)
+					return ;
 			}
 		}
 		res->stockstar = 0;

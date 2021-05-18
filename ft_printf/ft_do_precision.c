@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 11:13:28 by agachet           #+#    #+#             */
-/*   Updated: 2020/12/21 11:51:17 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2020/12/22 16:07:05 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ char	*ft_chaine_vide(t_printf *res)
 {
 	char *ret;
 
-	ret = ft_calloc(1 , sizeof(char));
+	if (!(ret = ft_calloc(1, sizeof(char))))
+		return (0);
 	ret[0] = '\0';
 	free(res->struc);
 	return (ret);
@@ -44,21 +45,21 @@ char	*ft_chaine_vide(t_printf *res)
 
 int		ft_specials(t_printf *res)
 {
-
 	if (res->stockprecision == 0)
 	{
 		if (res->struc[0] == '0' && (res->car == 'd' || res->car == 'i' ||\
 		res->car == 'u' || res->car == 'x' || res->car == 'X'))
 		{
-			res->struc = ft_chaine_vide(res);
+			if (!(res->struc = ft_chaine_vide(res)))
+				return (0);
 			return (0);
 		}
 		else if (res->car == 's')
 		{
-			res->struc = ft_chaine_vide(res);
+			if (!(res->struc = ft_chaine_vide(res)))
+				return (0);
 			return (0);
 		}
-
 	}
 	return (1);
 }
@@ -67,13 +68,13 @@ void	ft_multy_flags(t_printf *res)
 {
 	if ((res->stockspaces > 0) && ft_boolean_bis(res) == 1)
 	{
-		ft_do_spaces(res); // pour 'c' et 's'?
+		ft_do_spaces(res);
 		res->stockspaces = 0;
 	}
 	if ((res->stockzero > 0) && ft_boolean_bis(res) == 1)
 	{
 		res->stockspaces = res->stockzero;
-		ft_do_spaces(res);  // 'c' 's'?
+		ft_do_spaces(res);
 		res->stockzero = 0;
 		res->stockspaces = 0;
 	}
@@ -82,15 +83,11 @@ void	ft_multy_flags(t_printf *res)
 		ft_do_moins(res);
 		res->stockmoins = 0;
 	}
-
-
 }
 
 void	ft_do_precision(t_printf *res)
 {
 	int		i;
-	char	*ret;
-
 
 	ft_specials(res);
 	i = ft_strlen(res->struc);
@@ -104,12 +101,13 @@ void	ft_do_precision(t_printf *res)
 			if (i < res->stockprecision)
 			{
 				i = res->stockprecision - i;
-				ret = ft_create_str_zero(i, res);
-				res->struc = ft_strfjoin_zero(ret, res->struc, 3);
+				if (!(res->struc = ft_strfjoinz(ft_cz(i, res), res->struc, 3)))
+					return ;
 			}
 		}
 		else if (res->car == 's' && (res->stockprecision < i))
-			res->struc = ft_substr(res->struc, res->stockprecision);
+			if (!(res->struc = ft_substr(res->struc, res->stockprecision)))
+				return ;
 	}
 	ft_multy_flags(res);
 	res->stockprecision = 0;

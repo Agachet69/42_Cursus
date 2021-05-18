@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 19:49:23 by agachet           #+#    #+#             */
-/*   Updated: 2020/11/30 15:12:09 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 15:16:22 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ void	ft_lstadd_back(t_list **alst, t_list *new)
 		return ;
 	new->next = NULL;
 	if (!*alst)
-	{
 		*alst = new;
-	}
 	else
 	{
 		while (tmp->next != NULL)
