@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 18:17:27 by agachet           #+#    #+#             */
-/*   Updated: 2021/05/25 15:46:13 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2021/05/26 18:15:15 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,6 @@ void	ft_ordre_fin(t_swap **lst_a, t_tri *tri)
 		while ((*lst_a)->rank != tri->nb_rank)
 			ft_rotate(lst_a, 1);
 }
-
-// void	ft_tri_cut(t_swap **lst_a, t_swap **lst_b, t_tri *tri)
-// {
-// 	int	i;
-
-// 	ft_push(lst_b, lst_a, 1);
-// 	while ((*lst_b) != NULL)
-// 	{
-// 		tri->nb_rank = to_b_in_a(lst_a, lst_b);
-// 		i = 0;
-// 		if (ft_rr_or_r(lst_a, tri) == 1)
-// 			while ((*lst_a)->rank != tri->nb_rank)
-// 				ft_reverse_rotate(lst_a, 1);
-// 		else
-// 			while ((*lst_a)->rank != tri->nb_rank)
-// 				ft_rotate(lst_a, 1);
-// 		ft_push(lst_b, lst_a, 1);
-// 	}
-// 	ft_ordre_fin(lst_a, tri);
-// }
 
 void	ft_tri(t_swap **lst_a, t_swap **lst_b, t_tri *tri)
 {
