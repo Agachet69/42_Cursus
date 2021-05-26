@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 12:27:31 by agachet           #+#    #+#             */
-/*   Updated: 2021/05/17 18:20:08 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2021/05/25 16:19:28 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_init(t_swap *lst, t_tri *tri)
 {
-	t_swap *tmp;
+	t_swap	*tmp;
 
 	tmp = lst;
 	while (tmp != NULL)
@@ -23,73 +23,53 @@ void	ft_init(t_swap *lst, t_tri *tri)
 		tmp = tmp->next;
 	}
 	tri->i = 0;
+	tri->min = 0;
 }
 
-int ft_atoi_b(char **av, t_swap **swap)
+int	ft_atoi_b(char **av, t_swap **swap)
 {
-	int i;
-	int j;
-	int neg;
-	int result;
+	t_atoi	atoib;
 
-	i = 1;
-	while (av[i] != NULL)
+	atoib.i = 1;
+	while (av[atoib.i] != NULL)
 	{
-		j = 0;
-		neg = 1;
-		result = 0;
-		if (av[i][j] == '-')
-		{
-			neg = -1;
-			j++;
-		}
-		while (av[i][j] >= '0' && av[i][j] <= '9')
-		{
-			result = (result * 10) + (av[i][j] - 48);
-			j++;
-		}
-		result *= neg;
-		ft_lstadd_back(swap, result, -1);
-		if (av[i][j] != '\0' && (!(av[i][j] >= '0' && av[i][j] <= '9')))
+		ft_cut_atoi_b(av, &atoib);
+		atoib.res *= atoib.neg;
+		if (atoib.res > 2147483647 || atoib.res < -2147483648)
 			return (-1);
-		i++;
+		ft_lstadd_back(swap, atoib.res, -1);
+		if (av[atoib.i][atoib.j] != '\0' && (!(av[atoib.i][atoib.j] >= '0' && \
+		av[atoib.i][atoib.j] <= '9')))
+			return (-1);
+		atoib.i++;
 	}
 	return (0);
 }
 
 int	ft_atoi_a(char *str, t_swap **swap)
 {
-	int i;
-	int neg;
-	int result;
+	t_atoi	atoi;
 
-	i = 0;
+	atoi.i = 0;
 	if (str[0] == '\0')
 		return (-1);
-	while (str[i])
+	while (str[atoi.i])
 	{
-		result = 0;
-		neg = 1;
-		if (str[i] == '-')
-		{
-			neg = -1;
-			i++;
-			if (!(str[i] >= '0' && str[i] <= '9'))
-				return (-1);
-		}
-		if (str[i] == ' ')
+		if (ft_cut_atoi_a(str, &atoi) == -1)
 			return (-1);
-		while (str[i] >= '0' && str[i] <= '9')
+		while (str[atoi.i] >= '0' && str[atoi.i] <= '9')
 		{
-			result = (result * 10) + (str[i] - 48);
-			i++;
+			atoi.res = (atoi.res * 10) + (str[atoi.i] - 48);
+			atoi.i++;
 		}
-		if (str[i] != ' ' && str[i] != '\0')
-			return(-1);
-		while (str[i] == ' ')
-				i++;
-		result *= neg;
-		ft_lstadd_back(swap, result, -1);
+		if (str[atoi.i] != ' ' && str[atoi.i] != '\0')
+			return (-1);
+		while (str[atoi.i] == ' ')
+			atoi.i++;
+		atoi.res *= atoi.neg;
+		if (atoi.res > 2147483647 || atoi.res < -2147483648)
+			return (-1);
+		ft_lstadd_back(swap, atoi.res, -1);
 	}
 	return (0);
 }
@@ -99,11 +79,19 @@ int	ft_check_av(int ac, char **av, t_swap **swap)
 	if (ac == 2)
 	{
 		if (ft_atoi_a(av[1], swap) == -1)
-			return(-1);
+		{
+			ft_lstclear(swap);
+			return (-1);
+		}
 	}
 	else
+	{
 		if (ft_atoi_b(av, swap) == -1)
+		{
+			ft_lstclear(swap);
 			return (-1);
+		}
+	}
 	return (0);
 }
 
@@ -123,11 +111,12 @@ int	main(int ac, char **av)
 			return (printf("Error\n"));
 	if (ft_verif_double(&swap_a) == -1)
 		return (printf("Error\n"));
-	ft_ranking(swap_a);
+	ft_ranking(swap_a, &tri);
+	if (ft_lstlen(&swap_a) <= 5 && ft_lstlen(&swap_a) >= 2)
+		ft_tri_for_five(&swap_a, &swap_b);
 	while (ft_verif_tri(&swap_a) == -1 || swap_b != NULL)
 		ft_tri(&swap_a, &swap_b, &tri);
-	print_list(swap_a);
-	// while (get_next_line(&str))
-	//printf("%d\n", ());
+	ft_lstclear(&swap_a);
+	ft_lstclear(&swap_b);
 	return (0);
 }

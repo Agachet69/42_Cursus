@@ -6,145 +6,112 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 14:23:42 by agachet           #+#    #+#             */
-/*   Updated: 2021/05/17 14:05:14 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2021/05/25 16:22:20 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ft_check_rr_or_r(t_swap **lst_a, t_swap **lst_b, t_tri *tri)
+int	ft_rr_or_r(t_swap **lst_a, t_tri *tri)
 {
-	t_swap *tmp;
+	t_swap	*tmp;
+	int		i;
+	int		j;
 
-	tri->cpmt_nb = 0;
-	tri->rr_or_r = 0;
+	i = 0;
+	j = 0;
+	tmp = (*lst_a);
+	while (tri->nb_rank != tmp->rank)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	while (tmp != NULL)
+	{
+		j++;
+		tmp = tmp->next;
+	}
+	if (j < i)
+		return (1);
+	return (0);
+}
+
+int	ft_put_little(t_swap **lst_a, t_swap **lst_b)
+{
+	t_swap	*tmp;
+	int		rank;
+
+	tmp = (*lst_a);
+	rank = (*lst_b)->rank;
+	while (tmp != NULL)
+	{
+		if (rank > tmp->rank)
+			rank = tmp->rank;
+		tmp = tmp->next;
+	}
+	return (rank);
+}
+
+int	to_b_in_a(t_swap **lst_a, t_swap **lst_b)
+{
+	t_swap	*tmp;
+	int		rank;
+	int		comp;
+	int		stock;
+
+	comp = 0;
+	rank = (*lst_b)->rank;
+	tmp = (*lst_a);
+	while (tmp != NULL)
+	{
+		if (tmp->rank > rank)
+		{
+			if (comp == 0 || comp < (rank - tmp->rank))
+			{
+				stock = tmp->rank;
+				comp = rank - tmp->rank;
+			}
+		}
+		tmp = tmp->next;
+	}
+	if (comp != 0)
+		return (stock);
+	comp = ft_put_little(lst_a, lst_b);
+	return (comp);
+}
+
+void	ft_search_little_cut(t_swap **lst_a, t_tri *tri)
+{
+	t_swap	*tmp;
+
+	tri->cmpt_i = 0;
+	tri->cmpt_j = 0;
 	tmp = (*lst_a)->next;
 	while (tmp != NULL)
 	{
-		if (tri->nb_a < tmp->nb)
-			tri->rr_or_r++;
+		if (tri->nb_rank > tmp->rank)
+			tri->nb_rank = tmp->rank;
 		tmp = tmp->next;
-		tri->cpmt_nb++;
 	}
-	tmp = (*lst_b);
+	tmp = (*lst_a);
+	while (tmp->rank != tri->nb_rank)
+	{
+		tri->cmpt_i++;
+		tmp = tmp->next;
+	}
 	while (tmp != NULL)
 	{
-		if (tri->nb_a < tmp->nb)
-			tri->rr_or_r++;
+		tri->cmpt_j++;
 		tmp = tmp->next;
-		tri->cpmt_nb++;
-	}
-	if (tri->rr_or_r > (tri->cpmt_nb / 2))
-		tri->rrr = 1;
-	else
-		tri->rrr = 0;
-}
-
-void	ft_check_rr_or_rb(t_swap **lst_a, t_swap **lst_b, t_tri *tri)
-{
-	t_swap *tmp;
-
-	tri->cpmt_nb = 0;
-	tri->rr_or_r = 0;
-	tmp = (*lst_a);
-
-	while (tmp != NULL)
-	{
-		if (tri->nb_b < tmp->nb)
-			tri->rr_or_r++;
-		tmp = tmp->next;
-		tri->cpmt_nb++;
-	}
-	tmp = (*lst_b);
-	while (tmp != NULL && tmp->next != NULL)
-	{
-		if (tri->nb_b > tmp->next->nb)
-			tri->rr_or_r++;
-		tmp = tmp->next;
-		tri->cpmt_nb++;
-	}
-
-	if (tri->rr_or_r > (tri->cpmt_nb / 2))
-		tri->rrr_b = 1;
-	else
-		tri->rrr_b = 0;
-}
-
-void	ft_put_last_nb(t_swap **lst_a, t_swap **lst_b, t_tri *tri)
-{
-	t_swap *tmp;
-
-	tmp = (*lst_a);
-
-	tri->nb_a = tmp->nb;
-	tri->next_a = tmp->next->nb;
-	while (tmp->next != NULL)
-	tmp = tmp->next;
-	tri->last_a = tmp->nb;
-	if ((*lst_b) != NULL)
-	{
-		tmp = (*lst_b);
-		tri->nb_b = tmp->nb;
-		if ((*lst_b)->next != NULL)
-		{
-			tri->next_b = tmp->next->nb;
-			while (tmp->next != NULL)
-			tmp = tmp->next;
-			tri->last_b = tmp->nb;
-		}
 	}
 }
 
-void	ft_do_tri_a(t_swap **lst_a, t_swap **lst_b, t_tri *tri)
+int	ft_search_little(t_swap **lst_a, t_tri *tri)
 {
-	ft_put_last_nb(lst_a, lst_b, tri);
-	if (tri->nb_a > tri->next_a && tri->nb_b < tri->next_b &&\
-		(*lst_b) != NULL/* && (*lst_a) != NULL*/)
-		ft_ss((*lst_a), (*lst_b));
-	else if (tri->nb_a > tri->next_a)
-	{
-		write(1, "sa\n", 4);
-		ft_swap(*lst_a);
-	}
-	else if (tri->nb_a > tri->last_a && tri->nb_b < tri->last_b &&\
-			(*lst_b) != NULL)
-		ft_rr(lst_a, lst_b);
-	else if (tri->nb_a > tri->last_a)
-	{
-		write(1, "ra\n", 4);
-		ft_rotate(lst_a);
-	}
+	tri->nb_rank = (*lst_a)->rank;
+	ft_search_little_cut(lst_a, tri);
+	if (tri->cmpt_j < tri->cmpt_i)
+		return (1);
 	else
-	{
-		write(1, "pb\n", 4);
-		ft_push(lst_a, lst_b);
-	}
-}
-
-void	ft_do_tri_b(t_swap **lst_a, t_swap **lst_b, t_tri *tri)
-{
-	ft_put_last_nb(lst_a, lst_b, tri);
-	// ft_check_rr_or_r(lst_a, lst_b, tri);
-	// ft_check_rr_or_rb(lst_a, lst_b, tri);
-	if (tri->nb_a > tri->next_a && tri->nb_b < tri->next_b &&\
-		(*lst_b) != NULL && (*lst_a) != NULL)
-		ft_ss((*lst_a), (*lst_b));
-	else if (tri->nb_b < tri->next_b)
-	{
-		write(1, "sb\n", 4);
-		ft_swap(*lst_b);
-	}
-	else if (tri->nb_a > tri->last_a && tri->nb_b < tri->last_b &&\
-		(*lst_b) != NULL && (*lst_b) != NULL)
-		ft_rr(lst_a, lst_a);
-	else if (tri->nb_b < tri->last_b)
-	{
-		write(1, "rb\n", 4);
-		ft_rotate(lst_b);
-	}
-	else
-	{
-		write(1, "pa\n", 4);
-		ft_push(lst_b, lst_a);
-	}
+		return (0);
 }

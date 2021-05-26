@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:27:09 by agachet           #+#    #+#             */
-/*   Updated: 2021/05/17 17:40:13 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2021/05/25 15:42:30 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	ft_dellst_back(t_swap **list)
 	free(tmp);
 }
 
-void	ft_lstadd_back(t_swap **swap, int valeur, int rank)
+void	ft_lstadd_back(t_swap **swap, long int valeur, int rank)
 {
-	t_swap *new;
-	t_swap *tmp;
+	t_swap	*new;
+	t_swap	*tmp;
 
 	new = malloc(sizeof(*new));
 	if (new == NULL)
@@ -68,14 +68,11 @@ void	ft_dellst_front(t_swap **list)
 {
 	t_swap	*tmp;
 
-
 	if (list == NULL)
 		return ;
 	tmp = (*list)->next;
-
 	free(*list);
 	*list = tmp;
-
 }
 
 void	ft_lstadd_front(t_swap **list, int valeur, int rank)
@@ -89,4 +86,19 @@ void	ft_lstadd_front(t_swap **list, int valeur, int rank)
 	new->rank = rank;
 	new->next = *list;
 	*list = new;
+}
+
+int	ft_lstlen(t_swap **lst)
+{
+	int		i;
+	t_swap	*tmp;
+
+	tmp = (*lst);
+	i = 0;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
 }

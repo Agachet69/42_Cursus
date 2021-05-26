@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 17:03:37 by agachet           #+#    #+#             */
-/*   Updated: 2021/05/17 16:57:13 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2021/05/25 16:18:59 by agachet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ int	ft_verif_double(t_swap **list)
 		{
 			if (tmp->nb == tmp2->nb)
 			{
-				//printf("double = %d", tmp->nb);
-				//return (-1);
-				tmp->nb *= 10;
+				ft_lstclear(list);
+				return (-1);
 			}
 			tmp = tmp->next;
 		}
@@ -74,4 +73,3 @@ int	ft_verif_tri_b(t_swap **list)
 	}
 	return (0);
 }
-
