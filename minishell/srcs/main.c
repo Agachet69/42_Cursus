@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:18:52 by agachet           #+#    #+#             */
-/*   Updated: 2021/05/31 19:17:49 by agachet          ###   ########lyon.fr   */
+/*   Updated: 2021/06/01 17:43:40 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,29 @@ int	get_next_std(char **str)
 	return (0);
 }
 
-int	ft_exec(char *cmd, char **env)
+int	ft_exec(char *cmd)
 {
 	char	**tab;
 	pid_t	pid;
 	int		status;
-	char	*str2 = "/bin/";
+	int		i;
 
-	tab = malloc(sizeof(1));
-	//cmd	= ft_strcat(cmd, str2);
-	tab[0] = ft_strcat(cmd, str2);
+	tab = ft_split(cmd, ' ');
 	status = 0;
 	pid = fork();
 	if (pid == -1)
 		return (printf("ERREUR\n"));
-	if (pid == 0)
+	else if (pid == 0)
 	{
-	if (execve(tab[0], tab, env) == -1)
-		perror("shell");
+		if (execve(tab[0], tab, NULL) == -1)
+			perror("shell");
 	}
 	else
 	 	wait(&status);
+	i = 0;
+	while (tab[i] != NULL)
+		free(tab[i]);
+	free(tab);
 	return (0);
 }
 
@@ -94,30 +96,12 @@ int	main(int ac, char **av, char **env)
 	(void)env;
 	(void)av;
 	(void)ac;
-	// c_str = NULL;
-	// c_str = malloc(sizeof(char *)* 2);
-	// get_next_std(&str);
-	// c_str[0] = str;
-	// c_str[1] = NULL;
-	//printf("o\n");
-
-	// status = 0;
-	// pid = fork();
-	// if (pid == -1)
-	// 	return (printf("ERREUR\n"));
-	// if (pid == 0)
-	// {
-	// 	if (execve(str, c_str, env) == -1)
-	// 		perror("shell");
-	// }
-	// else
-	// 	wait(&status);
 
 	write(1, "$> ", 3);
 	while (1)
 	{
 		get_next_std(&str);
-		ft_exec(str, env);
+		ft_exec(str);
 		if (ft_parsing(str) == -1)
 		//	printf("command not found\n");
 		write(1, "$> ", 3);

@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agachet <agachet@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 14:10:39 by agachet           #+#    #+#              #
-#    Updated: 2021/05/31 14:38:29 by agachet          ###   ########lyon.fr    #
+#    Updated: 2021/06/01 15:14:14 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	minishell
 
 SRCS_PATH	=	srcs
 
-SRCS_NAME	=	main.c utils.c
+SRCS_NAME	=	main.c utils.c ft_path.c
 
 OBJS		=	$(PATH:.c=.o)
 
