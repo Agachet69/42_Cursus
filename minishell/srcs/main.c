@@ -6,26 +6,41 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:18:52 by agachet           #+#    #+#             */
-/*   Updated: 2021/06/01 17:43:40 by agachet          ###   ########.fr       */
+/*   Updated: 2021/06/03 17:09:17 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_parsing(char *str)
+int	ft_parsing(char *str, t_env **env, t_env **exp)
 {
 	if (ft_strcmp(str, "echo") == 0)
+	{
+		ft_echo(str);
 		return (0);
+	}
 	else if (ft_strcmp(str, "cd") == 0)
+	{
+		ft_cd(str);
 		return (0);
+	}
 	else if (ft_strcmp(str, "pwd") == 0)
+	{
+		ft_pwd();
 		return (0);
+	}
 	else if (ft_strcmp(str, "export") == 0)
+	{
+		ft_export(str, env, exp);
 		return (0);
+	}
 	else if (ft_strcmp(str, "unset") == 0)
 		return (0);
 	else if (ft_strcmp(str, "env") == 0)
+	{
+		ft_env(env);
 		return (0);
+	}
 	else if (ft_strcmp(str, "exit") == 0)
 		return (0);
 	return (-1);
@@ -59,50 +74,69 @@ int	get_next_std(char **str)
 	return (0);
 }
 
-int	ft_exec(char *cmd)
+int	ft_exec(char *cmd, char **env)
 {
 	char	**tab;
 	pid_t	pid;
 	int		status;
 	int		i;
+	char	*tst;
+	char	**test;
 
-	tab = ft_split(cmd, ' ');
-	status = 0;
-	pid = fork();
-	if (pid == -1)
-		return (printf("ERREUR\n"));
-	else if (pid == 0)
-	{
-		if (execve(tab[0], tab, NULL) == -1)
-			perror("shell");
-	}
-	else
-	 	wait(&status);
 	i = 0;
-	while (tab[i] != NULL)
-		free(tab[i]);
-	free(tab);
+	if (cmd == NULL)
+		return  (-1);
+
+	tst = ft_search_env(env, "PATH=");
+	test = ft_split(tst, ':');
+	tab = ft_split(cmd, ' ');
+	//printf("%s\n", tst);
+	while (test[i] != NULL)
+	{
+		test[i] = ft_strcat("/" , test[i]);
+		tst = ft_strcat(tab[0], test[i]);
+		status = 0;
+		pid = fork();
+		if (pid == -1)
+			return (printf("ERREUR\n"));
+		else if (pid == 0)
+		{
+		//	printf("%s\n", tst);
+			if (access(tst ,F_OK) == 0)
+				/*if (*/execve(tst, tab, env)/* == -1)*/;
+				//perror("shell");
+		}
+		else
+		 	wait(&status);
+		i++;
+	}
+	i = -1;
+	// while (tab[++i] != NULL)
+	// 	free(tab[i]);
+	// free(tab);
 	return (0);
 }
 
 int	main(int ac, char **av, char **env)
 {
 	char	*str;
+	t_env	*env_lst;
+	t_env	*exp;
 
-	// char	**c_str;
-	// pid_t	pid;
-	// int		status;
-
-	(void)env;
 	(void)av;
 	(void)ac;
+	env_lst = NULL;
+
+	ft_list(env, &env_lst);
+	ft_list(env, &exp);
 
 	write(1, "$> ", 3);
 	while (1)
 	{
 		get_next_std(&str);
-		ft_exec(str);
-		if (ft_parsing(str) == -1)
+
+		if (ft_parsing(str, &env_lst, &exp) == -1)
+			ft_exec(str, env);
 		//	printf("command not found\n");
 		write(1, "$> ", 3);
 	}

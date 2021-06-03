@@ -6,35 +6,56 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 17:20:03 by agachet           #+#    #+#             */
-/*   Updated: 2021/06/01 17:32:48 by agachet          ###   ########.fr       */
+/*   Updated: 2021/06/02 15:22:21 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_strcat(char *src, char *str2)
+
+char	*ft_strcat(char *src, char *dst)
 {
-	char *dst;
 	int i;
 	int j;
 
 	j = 0;
 	i = 0;
-	dst = malloc(ft_strlen(src) + 6);
-	while (str2[i])
-	{
-		dst[i] = str2[i];
+	while (dst[i])
 		i++;
-	}
-	while(src[j])
+	while (src[j])
 	{
 		dst[i] = src[j];
 		i++;
 		j++;
 	}
-	dst[i] = 0;
+	dst[i] = '\0';
 	return (dst);
 }
+
+// char	*ft_strjoin(char *src, char *str2)
+// {
+// 	char *dst;
+// 	int i;
+// 	int j;
+
+// 	j = 0;
+// 	i = 0;
+// 	dst = malloc(ft_strlen(src) + ft_strlen(str2) + 1);
+// 	while (src[i])
+// 	{
+// 		dst[i] = src[i];
+// 		i++;
+// 	}
+// 	while(str2[j])
+// 	{
+// 		dst[i] = str2[j];
+// 		i++;
+// 		j++;
+// 	}
+// 	dst[i] = 0;
+// //	free(str2);
+// 	return (dst);
+// }
 
 int	ft_strlen(char *str)
 {
@@ -118,4 +139,14 @@ char	**ft_split(char *str, char c)
 	}
 	res[j] = NULL;
 	return (res);
+}
+
+void	ft_free_split(char **tab)
+{
+	int i;
+
+	i = -1;
+	while (tab[++i] != NULL)
+		free(tab[i]);
+	free(tab);
 }
