@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:21:14 by agachet           #+#    #+#             */
-/*   Updated: 2021/06/22 18:45:16 by agachet          ###   ########.fr       */
+/*   Updated: 2021/06/29 20:04:35 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,23 @@
 #include <pthread.h>
 #include <sys/time.h>
 
-typedef struct s_test
-{
-	int i;
-}				t_test;
 
 typedef struct s_philo
 {
+	int			fork;
 	int			i;
-	int			*j;
 	int			cmpt;
 	int			nb_philo;
 	long int	t_die;
 	long int	t_eat;
 	long int	t_sleep;
 	long int	nb_eat;
-	t_test		*test;
 }				t_philo;
+
+typedef struct s_thread
+{
+	int i;
+	t_philo *info;
+}				t_thread;
 
 #endif

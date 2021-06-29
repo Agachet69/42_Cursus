@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 18:55:51 by agachet           #+#    #+#             */
-/*   Updated: 2021/06/22 19:01:59 by agachet          ###   ########.fr       */
+/*   Updated: 2021/06/29 20:07:36 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,37 +102,27 @@ int	ft_parsing(char **av, int ac, t_philo *philo)
 
 void	*ft_philo(void *param)
 {
-	t_philo	*philo;
-	int		test;
+	t_thread	*philo;
+	pthread_mutex_t	mutex;
 
-	philo = (t_philo*)param;
-	philo->cmpt++;
-	test = (int)philo->j[philo->cmpt];
-	printf("thread %d\n", test);
-	//pthread_mutex_unlock(&mutex);
-	//t_philo		*philo2;
-
-	//philo2 = philo;
-	//while (philo->i != (philo->nb_eat * philo->nb_philo))
-	//{
-	//	if (ft_fork(&philo) == -1)
-	//		return (printf("Un philosopher est mort de faim\n"));
-	//	ft_sleep(&philo);
-	//	philo->i++;
-	//}
+	pthread_mutex_init(&mutex, NULL);
+	philo = param;
+	//printf("%d - %ld\n", philo->info->i, philo->info->nb_eat);
+	while (philo->info->nb_eat > philo->info->i)
+	{
+		pthread_mutex_lock(&mutex);
+		philo->info->i++;
+		printf("i = %d\n", philo->info->i);
+		pthread_mutex_unlock(&mutex);
+	}
 	return (NULL);
-}
-
-int	ft_c(pthread_t thread, int i)
-{
-	printf("coucou %d\n", i);
-	return (0);
 }
 
 int	main(int ac, char **av)
 {
 	t_philo		philo;
 	pthread_t	*thread;
+	t_thread	*thread_strc;
 	int			i;
 
 	if (ac < 5 || ac > 6)
@@ -140,15 +130,16 @@ int	main(int ac, char **av)
 	ft_init_struc(&philo);
 	if (ft_parsing(av, ac, &philo) == -1)
 		return (printf("FORMAT ARG - Error\n"));
+	thread_strc = malloc(sizeof(thread_strc) * philo.nb_philo);
 	thread = malloc(sizeof(pthread_t) * philo.nb_philo);
-	philo.j = malloc(sizeof(int) * philo.nb_philo);
+	//ft_init_struct_thread();
 	i = -1;
 	while (++i < philo.nb_philo)
 	{
-		philo.j[i] = i;
-		pthread_create(&thread[i], NULL, ft_philo, &philo);
+		thread_strc[i].i = i;
+		thread_strc[i].info = &philo;
+		pthread_create(&thread[i], NULL, ft_philo, &thread_strc[i]);
 	}
-
 	i = -1;
 	while (++i < philo.nb_philo)
 		pthread_join(thread[i], NULL);
