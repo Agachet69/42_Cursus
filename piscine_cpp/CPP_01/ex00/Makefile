@@ -5,35 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/07/14 18:52:17 by agachet           #+#    #+#              #
-#    Updated: 2021/09/16 15:23:24 by agachet          ###   ########.fr        #
+#    Created: 2021/09/16 15:04:20 by agachet           #+#    #+#              #
+#    Updated: 2021/09/16 15:04:22 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	= megaphone
-
-CC		= clang++
-
-SRCS 	= megaphone.cpp
-
-OBJS	= $(SRCS:.cpp=.o)
-
-FLAGS	= -Wall -Wextra -Werror
-
-%.o:	%.cpp
-		$(CC) $(CFLAGS) -c $< -o $@
-
-all:		$(NAME)
-
-$(NAME)	:	$(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-
-clean:
-		rm -f $(OBJS)
-
-fclean:
-		rm -rf ${NAME}
-
-re:		fclean all
-
-.PHONY: all fclean re

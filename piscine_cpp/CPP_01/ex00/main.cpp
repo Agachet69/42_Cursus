@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   annuaire.cpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 17:27:37 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/15 14:52:30 by agachet          ###   ########.fr       */
+/*   Created: 2021/09/15 19:31:54 by agachet           #+#    #+#             */
+/*   Updated: 2021/09/16 14:56:37 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "class.hpp"
-
-
+#include "Zombie.hpp"
 
 int main()
 {
-	int i;
-	std::string str;
-	Repertoire aa[8];
+	Zombie ted("Teeeeeed");
 
-	i = -1;
-	while (std::cout << "ENTER 'ADD' 'SEARCH' or 'EXIT': " \
-	&& std::cin >> str && str.compare("EXIT") != 0)
-	{
-		if (str.compare("ADD") == 0)
-		{
-			if (i < 7)
-				i++;
-			aa[i].add(&aa[i]);
-		}
-		if (str.compare("SEARCH") == 0)
-			aa->search(aa, i);
-	}
+	Zombie *joe = newZombie("Jooooe");
+	randomChump("Kyyyyyyky");
+	delete joe;
 	return (0);
 }

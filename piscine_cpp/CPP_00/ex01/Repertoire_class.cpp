@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 18:26:38 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/15 16:58:08 by agachet          ###   ########.fr       */
+/*   Updated: 2021/09/16 19:47:03 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ std::string	ft_affichage(std::string str)
 {
 	int espace;
 	std::string str2;
+	std::string tmp;
+	std::string tmp2;
 	int i;
 
+	tmp = str;
 	if (str.size() > 10)
 		str.replace(9, str.size() - 9, ".");
 	else if (str.size() < 10)
@@ -31,7 +34,9 @@ std::string	ft_affichage(std::string str)
 		str2 += str;
 		return (str2);
 	}
-	return (str);
+	tmp2 = str;
+	str = tmp;
+	return (tmp2);
 }
 
 Repertoire::Repertoire(void)
@@ -44,30 +49,41 @@ Repertoire::~Repertoire(void)
 	return ;
 }
 
+void Repertoire::details(Repertoire *test, int i)
+{
+	std::cout << std::endl << "first name: " << this[i].fname << std::endl;
+	std::cout << "last name: " << this[i].lname << std::endl;
+	std::cout << "nickname: " << this[i].nname << std::endl;
+	if (this[i].number.find_first_not_of("0123456789") != -1 || this[i].number.size() != 10)
+		std::cout << "number: non valide" << std::endl;
+	else
+		std::cout << "number: " << this[i].number << std::endl;
+	std::cout << "darkest secret: " << this[i].secret << std::endl << std::endl;
+}
+
 void Repertoire::add(Repertoire *test)
 {
-	std::string str;
-
 	std::cout << "first name :";
-	std::cin >> str;
-	test->first_name = ft_affichage(str);
+	std::getline (std::cin, test->fname);
+	test->first_name = ft_affichage(test->fname);
 	std::cout << "last name :";
-	std::cin >> str;
-	test->last_name = ft_affichage(str);
+	std::getline (std::cin, test->lname);
+	test->last_name = ft_affichage(test->lname);
 	std::cout << "nickname :";
-	std::cin >> str;
-	test->nickname = ft_affichage(str);
+	std::getline (std::cin, test->nname);
+	test->nickname = ft_affichage(test->nname);
 	std::cout << "number :";
-	std::cin >> test->number;
+	std::getline (std::cin, test->number);
 	std::cout << "secret :";
-	std::cin >> test->secret;
+	std::getline (std::cin, test->secret);
 }
 
 void Repertoire::search(Repertoire *test, int i)
 {
 	int index;
+	std::string contact;
 
-	std::cout << "     index|";
+	std::cout << std::endl << "     index|";
 	std::cout << "first name|";
 	std::cout << " last name|";
 	std::cout << "  nickname|" << std::endl;
@@ -76,6 +92,19 @@ void Repertoire::search(Repertoire *test, int i)
 		std::cout << "         " << index + 1 << "|";
 		std::cout << test[index].first_name << "|";
 		std::cout << test[index].last_name << "|";
-		std::cout << test[index].nickname << "|" << std::endl;
+		std::cout << test[index].nickname << "|"  << std::endl;
 	}
+	std::cout << std::endl;
+	std::cout << "-> Pour plus de détails, veuillez entrer l'index du contact recherché: ";
+	std::getline (std::cin, contact);
+	while (contact.find_first_not_of("12345678") != -1 \
+	&& std::cout << "-> Attention, mauvais format" << std::endl)
+	{
+		std::cout << "-> ";
+		std::getline (std::cin, contact);
+	}
+	if (std::stoi(contact) < index + 1)
+		details(test, std::stoi(contact) - 1);
+	else
+		std::cout << "-> Ce contact n'existe pas." << std::endl;
 }
