@@ -6,14 +6,14 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 18:26:38 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/16 19:47:03 by agachet          ###   ########.fr       */
+/*   Updated: 2021/09/17 15:28:46 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "class.hpp"
 
-std::string	ft_affichage(std::string str)
+std::string	ft_affichage(std::string *str)
 {
 	int espace;
 	std::string str2;
@@ -21,21 +21,23 @@ std::string	ft_affichage(std::string str)
 	std::string tmp2;
 	int i;
 
-	tmp = str;
-	if (str.size() > 10)
-		str.replace(9, str.size() - 9, ".");
-	else if (str.size() < 10)
+	if ((*str).size() < 1)
+		(*str = "(vide)");
+	tmp = *str;
+	if ((*str).size() > 10)
+		(*str).replace(9, (*str).size() - 9, ".");
+	else if ((*str).size() < 10)
 	{
-		espace = 10 - str.size();
+		espace = 10 - (*str).size();
 		for (i = 0; i < espace; i++)
 		{
 			 str2.append(1u,' ');
 		}
-		str2 += str;
+		str2 += (*str);
 		return (str2);
 	}
-	tmp2 = str;
-	str = tmp;
+	tmp2 = (*str);
+	(*str) = tmp;
 	return (tmp2);
 }
 
@@ -58,20 +60,24 @@ void Repertoire::details(Repertoire *test, int i)
 		std::cout << "number: non valide" << std::endl;
 	else
 		std::cout << "number: " << this[i].number << std::endl;
-	std::cout << "darkest secret: " << this[i].secret << std::endl << std::endl;
+	std::cout << "darkest secret: ";
+	if (this[i].secret.size() == 0)
+		std::cout << "(vide)" << std::endl << std::endl;
+	else
+		std::cout << this[i].secret << std::endl << std::endl;
 }
 
 void Repertoire::add(Repertoire *test)
 {
 	std::cout << "first name :";
 	std::getline (std::cin, test->fname);
-	test->first_name = ft_affichage(test->fname);
+	test->first_name = ft_affichage(&test->fname);
 	std::cout << "last name :";
 	std::getline (std::cin, test->lname);
-	test->last_name = ft_affichage(test->lname);
+	test->last_name = ft_affichage(&test->lname);
 	std::cout << "nickname :";
 	std::getline (std::cin, test->nname);
-	test->nickname = ft_affichage(test->nname);
+	test->nickname = ft_affichage(&test->nname);
 	std::cout << "number :";
 	std::getline (std::cin, test->number);
 	std::cout << "secret :";
@@ -97,9 +103,9 @@ void Repertoire::search(Repertoire *test, int i)
 	std::cout << std::endl;
 	std::cout << "-> Pour plus de détails, veuillez entrer l'index du contact recherché: ";
 	std::getline (std::cin, contact);
-	while (contact.find_first_not_of("12345678") != -1 \
-	&& std::cout << "-> Attention, mauvais format" << std::endl)
+	while (contact.size() == 0 || contact.find_first_not_of("12345678") != -1)
 	{
+		std::cout << "-> Attention, mauvais format" << std::endl;
 		std::cout << "-> ";
 		std::getline (std::cin, contact);
 	}

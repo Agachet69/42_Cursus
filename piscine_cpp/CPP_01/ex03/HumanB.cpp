@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 19:21:43 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/17 17:12:58 by agachet          ###   ########.fr       */
+/*   Created: 2021/09/17 19:33:35 by agachet           #+#    #+#             */
+/*   Updated: 2021/09/17 21:32:52 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
+#include "HumanB.hpp"
 
-#include <iostream>
-#include <string>
-
-class Zombie
+HumanB::HumanB(std::string name) : _name(name)
 {
-	private:
-		std::string _name;
+	return ;
+}
 
-	public:
-		Zombie(std::string name);
-		~Zombie();
-		void	announce(void);
-};
-	Zombie* newZombie(std::string name);
-	void randomChump(std::string name);
+HumanB::~HumanB()
+{
+	return ;
+}
 
-#endif
+void	HumanB::setWeapon(Weapon &type)
+{
+	this->_Weapon = &type;
+}
+
+void	HumanB::attack()
+{
+	if (this->_Weapon == NULL)
+		std::cout << this->_name << " has no weapon " << std::endl;
+	else
+		std::cout << this->_name << " attacks with his " << this->_Weapon->getType() << std::endl;
+}

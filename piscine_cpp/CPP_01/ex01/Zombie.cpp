@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 19:21:43 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/17 17:12:58 by agachet          ###   ########.fr       */
+/*   Created: 2021/09/17 16:55:34 by agachet           #+#    #+#             */
+/*   Updated: 2021/09/17 17:55:04 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
+#include "Zombie.hpp"
 
-#include <iostream>
-#include <string>
-
-class Zombie
+Zombie::Zombie()
 {
-	private:
-		std::string _name;
+	return ;
+}
 
-	public:
-		Zombie(std::string name);
-		~Zombie();
-		void	announce(void);
-};
-	Zombie* newZombie(std::string name);
-	void randomChump(std::string name);
+Zombie::~Zombie()
+{
+	std::cout << this->_name << " se rendort." << std::endl;
+	return ;
+}
 
-#endif
+void	Zombie::setname(std::string name)
+{
+	this->_name = name;
+	return ;
+}
+
+void	Zombie::announce()
+{
+	std::cout << this->_name << " se réveil." << std::endl;
+}

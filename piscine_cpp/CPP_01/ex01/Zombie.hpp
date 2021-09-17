@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 19:21:43 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/17 17:12:58 by agachet          ###   ########.fr       */
+/*   Created: 2021/09/17 16:47:57 by agachet           #+#    #+#             */
+/*   Updated: 2021/09/17 17:44:52 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ class Zombie
 		std::string _name;
 
 	public:
-		Zombie(std::string name);
-		~Zombie();
+		Zombie(void);
+		~Zombie(void);
+		void	setname(std::string name);
 		void	announce(void);
 };
-	Zombie* newZombie(std::string name);
-	void randomChump(std::string name);
-
+	Zombie* zombieHorde( int N, std::string name );
 #endif

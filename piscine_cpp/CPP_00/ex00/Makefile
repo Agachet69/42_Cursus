@@ -6,7 +6,7 @@
 #    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 18:52:17 by agachet           #+#    #+#              #
-#    Updated: 2021/09/16 15:23:24 by agachet          ###   ########.fr        #
+#    Updated: 2021/09/17 18:09:13 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ clean:
 		rm -f $(OBJS)
 
 fclean:
-		rm -rf ${NAME}
+		rm -rf ${NAME} $(OBJS)
 
 re:		fclean all
 

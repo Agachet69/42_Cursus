@@ -5,23 +5,22 @@
 #                                                     +:+ +:+         +:+      #
 #    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/09/16 15:04:20 by agachet           #+#    #+#              #
-#    Updated: 2021/09/17 18:07:13 by agachet          ###   ########.fr        #
+#    Created: 2021/09/17 19:00:32 by agachet           #+#    #+#              #
+#    Updated: 2021/09/17 19:26:54 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-NAME 	= Horde
+NAME	= Reference
 
 CC		= clang++
 
-SRCS 	= Zombie.cpp newZombie.cpp randonChump.cpp main.cpp
+SRCS	= main.cpp
 
-OBJS	= $(SRCS:.cpp=.o)
+OBJS	= ${SRCS:.cpp=.o}
 
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= Werror Wextra Wall
 
-%.o:	%.cpp
+%.o	:	%.cpp
 		$(CC) $(CFLAGS) -c $< -o $@
 
 all:		$(NAME)
@@ -30,10 +29,12 @@ $(NAME)	:	$(OBJS)
 			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-		rm -f $(OBJS)
+		@rm -f $(OBJS)
+		@echo [CLEAN]
 
 fclean:
-		rm -rf ${NAME} $(OBJS)
+		@rm -rf ${NAME} ${OBJS}
+		@echo [FCLEAN]
 
 re:		fclean all
 
