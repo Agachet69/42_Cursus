@@ -5,30 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 19:32:31 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/20 14:39:38 by agachet          ###   ########.fr       */
+/*   Created: 2021/10/04 20:07:57 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/06 17:30:18 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
+#include "MateriaSource.hpp"
+#include "Character.hpp"
 
 int main()
 {
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
+	IMateriaSource* src = new MateriaSource();
+	//src->learnMateria(new Ice());
+	//src->learnMateria(new Cure());
+	//ICharacter* me = new Character("me");
+	//AMateria* tmp;
+	//tmp = src->createMateria("ice");
+	//me->equip(tmp);
+	//tmp = src->createMateria("cure");
+	//me->equip(tmp);
+	//ICharacter* bob = new Character("bob");
+	//me->use(0, *bob);
+	//me->use(1, *bob);
+	//delete bob;
+	//delete me;
+	//delete src;
+	return 0;
 }

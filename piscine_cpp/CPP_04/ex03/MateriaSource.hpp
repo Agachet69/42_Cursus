@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 19:32:31 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/20 14:39:38 by agachet          ###   ########.fr       */
+/*   Created: 2021/10/05 18:55:14 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/06 17:30:07 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#ifndef MATERIASOURCE_HPP
+#define MATERIASOURCE_HPP
 
-int main()
+#include "AMateria.hpp"
+#include "IMateriaSource.hpp"
+
+class MateriaSource : public IMateriaSource
 {
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
-}
+	public:
+		MateriaSource();
+		~MateriaSource();
+
+		void	learnMateria(AMateria*);
+		AMateria* createMateria(std::string const & type);
+
+	private:
+		AMateria *srcs[4];
+};
+
+#endif

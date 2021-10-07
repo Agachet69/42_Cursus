@@ -5,30 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 19:32:31 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/20 14:39:38 by agachet          ###   ########.fr       */
+/*   Created: 2021/09/27 17:03:56 by agachet           #+#    #+#             */
+/*   Updated: 2021/09/27 18:33:39 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#include "ClapTrap.hpp"
 
 int main()
 {
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
+	ClapTrap test("Joe");
+	test.attack("Boby");
+	test.takeDamage(3);
+	test.beRepaired(12);
+	return (0);
 }

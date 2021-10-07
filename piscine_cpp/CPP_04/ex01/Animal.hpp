@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 19:32:31 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/20 14:39:38 by agachet          ###   ########.fr       */
+/*   Created: 2021/09/29 19:27:01 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/04 18:13:17 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
-int main()
+#include "iostream"
+#include "string"
+
+class Animal
 {
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
-}
+	public:
+		Animal();
+		Animal(Animal const &);
+		Animal	&operator=(Animal const &);
+		virtual ~Animal();
+
+		virtual void makeSound() const;
+		virtual std::string getType() const;
+
+	protected:
+		std::string type;
+};
+
+#endif

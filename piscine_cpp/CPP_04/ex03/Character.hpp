@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 19:32:31 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/20 14:39:38 by agachet          ###   ########.fr       */
+/*   Created: 2021/10/05 17:22:56 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/06 17:27:04 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#ifndef CHARACTER_HPP
+#define CHARACTER_HPP
 
-int main()
+#include "AMateria.hpp"
+#include "ICharacter.hpp"
+
+class Character : public ICharacter
 {
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
-}
+	public:
+		Character(std::string name);
+		~Character();
+
+		std::string const &getName() const;
+		void	equip(AMateria *m);
+		void	unequip(int idx);
+		void	use(int idx, ICharacter &target);
+
+	protected:
+		std::string _name;
+		AMateria	*Inventory[4];
+};
+
+#endif

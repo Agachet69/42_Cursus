@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 19:32:31 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/20 14:39:38 by agachet          ###   ########.fr       */
+/*   Created: 2021/10/01 15:39:15 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/04 19:30:32 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#ifndef Cat_HPP
+#define Cat_HPP
 
-int main()
+#include "Animal.hpp"
+#include "Brain.hpp"
+
+class Cat : virtual public Animal /*, virtual public Brain*/
 {
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
-}
+	public:
+		Cat();
+		Cat(Cat const &);
+		Cat	&operator=(Cat const &);
+		virtual ~Cat();
+
+		void makeSound() const;
+		void setBrain(std::string *ideas);
+		std::string getType() const;
+
+	protected:
+		std::string type;
+
+	private:
+		std::string *_Brain;
+};
+
+#endif

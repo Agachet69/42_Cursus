@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 19:32:31 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/20 14:39:38 by agachet          ###   ########.fr       */
+/*   Created: 2021/10/01 19:02:52 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/04 18:38:00 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#include "Brain.hpp"
 
-int main()
+Brain::Brain()
 {
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
+	this->ideas = new std::string[100];
+	std::cout << "Construction de Brain" << std::endl;
+	return ;
 }
+
+Brain::Brain(Brain const &copy)
+{
+	*this = copy;
+	return;
+}
+
+Brain	&Brain::operator=(Brain const &assignation)
+{
+	if (this != &assignation)
+	{
+		this->ideas = assignation.ideas;
+	}
+	return (*this);
+}
+
+Brain::~Brain()
+{
+	std::cout << "Destruction de Brain" << std::endl;
+	return ;
+}
+
