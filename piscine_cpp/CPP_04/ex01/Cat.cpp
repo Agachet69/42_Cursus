@@ -6,44 +6,43 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:20:55 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/05 15:41:07 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/11 16:55:54 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat() : Animal(), type("Cat")
+Cat::Cat() : Animal()
 {
-	int i = 49;
-
 	std::cout << "Construction Cat Class" << std::endl;
-	this->ideas = new Brain();
-	while (++i < 100)
-		ideas[i] = "Cat";
+	this->_Brain = new Brain();
 	return ;
 }
 
 Cat::Cat(Cat const &copy)
 {
-	std::cout << "Constructeur de Copy" << std::endl;
+	this->type = copy.type;
+	this->_Brain = new Brain;
+	for (int i = 0; i < 100; i++)
+		this->_Brain->setId(i, copy._Brain->getId(i));
+	std::cout << "Deep Constructeur de Copy" << std::endl;
 	*this = copy;
 	return ;
 }
 
 Cat	&Cat::operator=(Cat const &assignation)
 {
-	if (this != &assignation)
-	{
-		std::cout << "Assignation operator called" << std::endl;
-		this->type = assignation.type;
-	}
+	this->type = assignation.type;
+	for (int i = 0; i < 100; i++)
+		this->_Brain->setId(i, assignation._Brain->getId(i));
+	std::cout << "Assignation operator called" << std::endl;
 	return (*this);
 }
 
 Cat::~Cat()
 {
 	std::cout << "Destruction Cat Class" << std::endl;
-	delete this->ideas;
+	delete this->_Brain;
 	return ;
 }
 
@@ -51,9 +50,4 @@ void	Cat::makeSound() const
 {
 	std::cout << "MIAOU" << std::endl;
 	return ;
-}
-
-std::string	Cat::getType() const
-{
-	return (this->type);
 }

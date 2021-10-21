@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:39:15 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/05 15:11:53 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/11 15:52:56 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,9 @@ class Cat : virtual public Animal
 		virtual ~Cat();
 
 		void makeSound() const;
-		void setBrain(std::string *ideas);
-		std::string getType() const;
-
-	protected:
-		std::string type;
 
 	private:
-		Brain *ideas;
+		Brain *_Brain;
 };
 
 #endif

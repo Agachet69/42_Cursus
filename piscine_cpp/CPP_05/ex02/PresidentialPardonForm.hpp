@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 20:10:35 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/11 16:26:44 by agachet          ###   ########.fr       */
+/*   Created: 2021/10/11 20:11:33 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/13 20:37:54 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
 
+#include <string>
+#include <fstream>
 #include <iostream>
-#include "ICharacter.hpp"
-#include "IMateriaSource.hpp"
+#include "Form.hpp"
 
-class AMateria
+class PresidentialPardonForm : public Form
 {
-	protected:
-		std::string _type;
+	private:
+		std::string _target;
 
 	public:
-		AMateria();
-		AMateria(std::string const & type);
-		~AMateria();
-		std::string const & getType() const;
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target) = 0;
+		PresidentialPardonForm(std::string target);
+		~PresidentialPardonForm();
+
+
+		void	execute(Bureaucrat const & executor) const;
 };
 
 #endif

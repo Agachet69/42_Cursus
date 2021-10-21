@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 19:47:12 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/04 19:08:29 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/11 15:54:46 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,9 @@ class Dog : virtual public Animal, virtual public Brain
 		virtual ~Dog();
 
 		void makeSound() const;
-		std::string getType() const;
-
-	protected:
-		std::string type;
 
 	private:
-		std::string *_Brain;
+		Brain *_Brain;
 };
 
 #endif

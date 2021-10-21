@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 20:10:35 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/11 16:26:44 by agachet          ###   ########.fr       */
+/*   Created: 2021/10/11 20:11:17 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/14 16:03:23 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
 
-#include <iostream>
-#include "ICharacter.hpp"
-#include "IMateriaSource.hpp"
+#include "Form.hpp"
 
-class AMateria
+class  RobotomyRequestForm : public Form
 {
-	protected:
-		std::string _type;
+	private:
+		std::string _target;
+		int			i;
 
 	public:
-		AMateria();
-		AMateria(std::string const & type);
-		~AMateria();
-		std::string const & getType() const;
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target) = 0;
+		RobotomyRequestForm(std::string target);
+		~RobotomyRequestForm();
+
+		void	execute(Bureaucrat const & executor) const;
 };
 
 #endif

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 20:10:35 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/11 16:26:44 by agachet          ###   ########.fr       */
+/*   Created: 2021/10/18 15:14:19 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/20 17:19:33 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#ifndef ITER_HPP
+#define ITER_HPP
 
 #include <iostream>
-#include "ICharacter.hpp"
-#include "IMateriaSource.hpp"
+#include <string>
 
-class AMateria
+template<typename T, typename L, typename F>
+void    iter(T *tab, L lenght, F (*func))
 {
-	protected:
-		std::string _type;
-
-	public:
-		AMateria();
-		AMateria(std::string const & type);
-		~AMateria();
-		std::string const & getType() const;
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target) = 0;
-};
+    for (int i = 0; i < lenght; i++)
+      (*func)(tab[i]);
+}
 
 #endif

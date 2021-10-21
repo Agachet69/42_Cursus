@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 20:10:35 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/11 16:26:44 by agachet          ###   ########.fr       */
+/*   Created: 2021/10/07 19:24:12 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/14 19:12:33 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#include "Intern.hpp"
 
-#include <iostream>
-#include "ICharacter.hpp"
-#include "IMateriaSource.hpp"
-
-class AMateria
+int main()
 {
-	protected:
-		std::string _type;
+	try
+	{
+		Bureaucrat Btest1("Michel", 4);
+		Intern test1;
+		Form *Ftest1;
+		Ftest1 = test1.makeForm("presidential pardon", "kiki");
+		Ftest1->beSigned(Btest1);
+		Btest1.executeForm(*Ftest1);
+		delete Ftest1;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n' << std::endl;
+	}
 
-	public:
-		AMateria();
-		AMateria(std::string const & type);
-		~AMateria();
-		std::string const & getType() const;
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target) = 0;
-};
-
-#endif
+}

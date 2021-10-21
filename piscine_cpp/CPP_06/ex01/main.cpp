@@ -5,24 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/01 18:50:34 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/11 16:06:20 by agachet          ###   ########.fr       */
+/*   Created: 2021/10/15 18:17:13 by agachet           #+#    #+#             */
+/*   Updated: 2021/10/19 17:24:01 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
+#include <cstdint>
+#include <iostream>
 
+typedef struct Data_t
+{
+	int	j;
+}				Data;
+
+uintptr_t serialize(Data* ptr)
+{
+	return (reinterpret_cast<uintptr_t>(ptr));
+}
+
+Data* deserialize(uintptr_t raw)
+{
+	return (reinterpret_cast<Data*>(raw));
+}
 
 int main()
 {
-	const Animal *tab[100];
+	Data test;
+	Data *test2;
 
-	for (int i = 0; i < 50; i++)
-		tab[i] = new Cat;
-	for (int i = 50; i < 100; i++)
-		tab[i] = new Dog;
-	for (int i = 0; i < 100; i++)
-		delete tab[i];
-	delete tab;
+	std::cout << &test << std::endl;
+	(test2) = deserialize((serialize(&test)));
+	std::cout << test2 << std::endl;
+	test2->j = 0;
+	std::cout << test2->j << std::endl;
+	test.j = 2;
+	std::cout << test2->j << std::endl;
+	return (0);
 }
