@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 17:22:10 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/29 19:06:51 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/29 18:10:27 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@ int main()
 {
 	DiamondTrap t("Jason");
 	t.whoAmI();
+	t.guardGate();
 	return (0);
 }

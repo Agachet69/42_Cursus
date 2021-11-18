@@ -6,27 +6,27 @@
 #    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 19:59:42 by agachet           #+#    #+#              #
-#    Updated: 2021/10/11 19:21:31 by agachet          ###   ########.fr        #
+#    Updated: 2021/11/04 19:59:05 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	Bureaucrat
+NAME	=	Form
 
 CC		=	clang++
 
-FLAGS	=	Werror Wextra Wall
+FLAGS	=	-Werror -Wextra -Wall
 
 SRCS	=	main.cpp Bureaucrat.cpp Form.cpp
 
 OBJS	=	$(SRCS:.cpp=.o)
 
 %.o:	%.cpp
-		@$(CC) $(CFLAGS) -c $< -o $@
+		@$(CC) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 			@echo [$(NAME)]
 
 clean:

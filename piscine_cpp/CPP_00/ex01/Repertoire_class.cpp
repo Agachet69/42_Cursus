@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 18:26:38 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/17 15:28:46 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/26 15:22:34 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ Repertoire::~Repertoire(void)
 	return ;
 }
 
-void Repertoire::details(Repertoire *test, int i)
+void Repertoire::details(int i)
 {
 	std::cout << std::endl << "first name: " << this[i].fname << std::endl;
 	std::cout << "last name: " << this[i].lname << std::endl;
 	std::cout << "nickname: " << this[i].nname << std::endl;
-	if (this[i].number.find_first_not_of("0123456789") != -1 || this[i].number.size() != 10)
+	if ((int)this[i].number.find_first_not_of("0123456789") != -1 || this[i].number.size() != 10)
 		std::cout << "number: non valide" << std::endl;
 	else
 		std::cout << "number: " << this[i].number << std::endl;
@@ -103,14 +103,14 @@ void Repertoire::search(Repertoire *test, int i)
 	std::cout << std::endl;
 	std::cout << "-> Pour plus de détails, veuillez entrer l'index du contact recherché: ";
 	std::getline (std::cin, contact);
-	while (contact.size() == 0 || contact.find_first_not_of("12345678") != -1)
+	while (contact.size() == 0 || (int)contact.find_first_not_of("12345678") != -1)
 	{
 		std::cout << "-> Attention, mauvais format" << std::endl;
 		std::cout << "-> ";
 		std::getline (std::cin, contact);
 	}
 	if (std::stoi(contact) < index + 1)
-		details(test, std::stoi(contact) - 1);
+		details(std::stoi(contact) - 1);
 	else
 		std::cout << "-> Ce contact n'existe pas." << std::endl;
 }

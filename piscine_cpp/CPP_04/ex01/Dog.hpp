@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 19:47:12 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/11 15:54:46 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/27 18:21:53 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Dog : virtual public Animal, virtual public Brain
+class Dog : virtual public Animal
 {
 	public:
 		Dog();

@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:39:15 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/04 19:30:32 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/11 15:52:56 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Cat : virtual public Animal /*, virtual public Brain*/
+class Cat : virtual public Animal
 {
 	public:
 		Cat();
@@ -25,14 +25,9 @@ class Cat : virtual public Animal /*, virtual public Brain*/
 		virtual ~Cat();
 
 		void makeSound() const;
-		void setBrain(std::string *ideas);
-		std::string getType() const;
-
-	protected:
-		std::string type;
 
 	private:
-		std::string *_Brain;
+		Brain *_Brain;
 };
 
 #endif

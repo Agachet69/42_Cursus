@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:13:35 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/11 19:40:09 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/08 14:32:39 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ class Form
 	public:
 		Form();
 		Form(std::string name, int Gsign, int Gexec);
-		Form(Form const &copy);
 		~Form();
-		Form	&operator=(Form const &);
 
-		std::string getName();
-		int getGsign();
-		int getGexec();
-		int getSign();
+		std::string getName() const;
+		int getGsign() const;
+		int getGexec() const;
+		int getSign() const;
 
 	class GradeTooHighException : public std::exception
 	{

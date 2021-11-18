@@ -6,11 +6,16 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 19:19:45 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/28 16:22:00 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/26 20:17:09 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+
+ClapTrap::ClapTrap() : _name("Default"), _hitpoints(10), _energy_points(10), _attack_damage(10)
+{
+	std::cout << "Création du ClapTrap par Default" << std::endl;
+}
 
 ClapTrap::ClapTrap(std::string name) : _name(name)
 {
@@ -32,6 +37,9 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &assignation)
 	{
 		std::cout << "Assignation operator called" << std::endl;
 		this->_name = assignation._name;
+		this->_hitpoints = assignation._hitpoints;
+		this->_energy_points = assignation._energy_points;
+		this->_attack_damage = assignation._attack_damage;
 	}
 	return (*this);
 }

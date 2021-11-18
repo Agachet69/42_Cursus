@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:33:16 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/27 20:11:23 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/26 18:54:18 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class ClapTrap
 {
 	public:
+			ClapTrap();
 			ClapTrap(std::string name);
 			ClapTrap(ClapTrap const &);
 			ClapTrap	&operator=(ClapTrap const &);

@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:39:29 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/21 15:15:12 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/02 18:05:57 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ class Array
 
 		T		&operator[](int i)
 		{
-			if (i >= _n)
+			if (i >= (int)_n)
 				throw Array<T>::OutOfRange();
 			return this->_tab[i];
 		}

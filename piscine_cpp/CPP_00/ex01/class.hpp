@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 18:22:29 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/16 19:28:55 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/26 15:22:16 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 
 	void	add(Repertoire *test);
 	void	search(Repertoire *test, int i);
-	void	details(Repertoire *test, int i);
+	void	details(int i);
 
 private:
 

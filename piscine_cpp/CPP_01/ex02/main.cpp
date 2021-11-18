@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 19:00:24 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/17 19:13:25 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/26 17:44:38 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int main()
 	std::cout << "str:    " << &str << std::endl;
 	std::cout << "strPTR: " << strPTR << std::endl;
 	std::cout << "strREF: " << &strREF << std::endl << std::endl;
-
 	std::cout << "strPTR: " << *strPTR << std::endl;
 	std::cout << "strREF: " << strREF << std::endl;
 	return (0);

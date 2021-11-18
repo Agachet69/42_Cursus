@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 20:09:36 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/06 17:29:16 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/27 17:25:02 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define ICHARACTER_HPP
 
 #include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {

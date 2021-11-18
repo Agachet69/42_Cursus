@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:26:35 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/14 18:33:58 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/08 15:40:38 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ Form	*Intern::makeForm(std::string FormName, std::string target)
 		if (NameF[i] == FormName)
 			return (this->*tab[i])(target);
 	}
-//	std::cout << "Form inconnu." << std::endl;
 	throw	Intern::FormInconnuException();
 	Form *b;
 	return (b);

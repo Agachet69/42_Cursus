@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 19:47:12 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/04 17:33:34 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/29 18:43:39 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Dog : public Animal
 		Dog	&operator=(Dog const &);
 		virtual ~Dog();
 
-		void makeSound() const;
+		virtual void makeSound() const;
 		std::string getType() const;
 
 	protected:

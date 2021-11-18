@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:18:38 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/18 20:15:35 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/08 16:14:17 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int main(int, char**)
             return 1;
         }
     }
+
     try
     {
         numbers[-2] = 0;
@@ -48,6 +49,7 @@ int main(int, char**)
     {
         std::cerr << e.what() << '\n';
     }
+
     try
     {
         numbers[MAX_VAL] = 0;

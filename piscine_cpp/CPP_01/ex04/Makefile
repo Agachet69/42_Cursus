@@ -6,7 +6,7 @@
 #    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 14:57:04 by agachet           #+#    #+#              #
-#    Updated: 2021/09/21 16:58:39 by agachet          ###   ########.fr        #
+#    Updated: 2021/10/26 18:04:05 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,15 @@ CC		= clang++
 
 OBJS	= ${SRCS:.cpp=.o}
 
-FLAGS	= Wall Wextra Werror
+FLAGS	= -Wall -Wextra -Werror
 
 %.o:	%.cpp
-		${CC} ${CFLAGS} -c $< -o $@
+		${CC} ${FLAGS} -c $< -o $@
 
 all:		$(NAME)
 
 $(NAME)	:	$(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
 		@rm -f $(OBJS)
@@ -34,6 +34,7 @@ clean:
 
 fclean:
 		@rm -rf ${NAME} ${OBJS}
+		@rm *.replace
 		@echo [FCLEAN]
 
 re:		fclean all

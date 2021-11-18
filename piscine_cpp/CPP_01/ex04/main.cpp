@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 14:31:51 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/21 15:56:03 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/26 17:59:13 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ int main(int ac, char **av)
 	{
 		for (i = 0; Ficher_srcs.get(a); i++)
 		{
-			std::cout << i << std::endl;
 			if (a == s1[i])
 			{
-				if (i + 1 == s1.size())
+				if (i + 1 == (int)s1.size())
 				{
 					MonFichier << s2;
 					tmp.clear();

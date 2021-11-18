@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:03:23 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/18 15:10:50 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/02 17:59:33 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,4 @@ int main()
     char test6 = 'b';
     char test66 = 'f';
     std::cout << "le plus grand est " << max<char>(test6, test66) << std::endl;
-}
+	}

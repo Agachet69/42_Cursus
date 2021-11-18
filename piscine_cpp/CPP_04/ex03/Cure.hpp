@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 14:44:50 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/06 17:27:28 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/27 20:12:50 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Cure: public AMateria
 	public:
 		Cure();
 		Cure(std::string const &type);
-		~Cure();
+		virtual ~Cure();
 		std::string const & getType() const;
 		AMateria* clone() const;
 		void use(ICharacter& target);

@@ -6,7 +6,7 @@
 #    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 16:09:56 by agachet           #+#    #+#              #
-#    Updated: 2021/10/18 19:35:22 by agachet          ###   ########.fr        #
+#    Updated: 2021/11/02 18:04:57 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,19 +14,19 @@ NAME	=	Array
 
 CC		=	clang++
 
-FLAGS	=	Werror Wextra Wall
+FLAGS	=	-Werror -Wextra -Wall
 
 SRCS	=	main.cpp
 
 OBJS	=	$(SRCS:.cpp=.o)
 
 %.o:	%.cpp
-		@$(CC) $(CFLAGS)-c $< -o $@
+		@$(CC) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 			@echo [$(NAME)]
 
 clean:

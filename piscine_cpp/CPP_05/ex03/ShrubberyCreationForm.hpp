@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:10:39 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/14 16:05:53 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/04 20:30:39 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ class ShrubberyCreationForm : public Form
 		std::string _target;
 
 	public:
+		ShrubberyCreationForm();
 		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(ShrubberyCreationForm const &copy);
 		~ShrubberyCreationForm();
 
+		ShrubberyCreationForm &operator=(ShrubberyCreationForm const&);
 		void	execute(Bureaucrat const & executor) const;
 };
 

@@ -6,7 +6,7 @@
 #    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/21 15:18:16 by agachet           #+#    #+#              #
-#    Updated: 2021/09/21 15:18:54 by agachet          ###   ########.fr        #
+#    Updated: 2021/10/26 17:51:05 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,15 @@ CC		= clang++
 
 OBJS	= ${SRCS:.cpp=.o}
 
-FLAGS	= Wall Wextra Werror
+FLAGS	= -Wall -Wextra -Werror
 
 %.o:	%.cpp
-		${CC} ${CFLAGS} -c $< -o $@
+		${CC} ${FLAGS} -c $< -o $@
 
 all:		$(NAME)
 
 $(NAME)	:	$(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
 		@rm -f $(OBJS)

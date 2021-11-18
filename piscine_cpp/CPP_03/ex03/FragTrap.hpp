@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 16:22:49 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/29 18:21:19 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/26 20:18:27 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class FragTrap : virtual public ClapTrap
 		FragTrap	&operator=(FragTrap const &);
 		~FragTrap(void);
 
+		void	attack(std::string const & target);
 		void	highFivesGuys(void);
 };
 

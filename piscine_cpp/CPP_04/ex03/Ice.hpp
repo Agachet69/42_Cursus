@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ice.hpp                                            :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 19:56:09 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/06 17:29:00 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/27 20:12:44 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Ice : public AMateria
 	public:
 		Ice();
 		Ice(std::string const & type);
-		~Ice();
+		virtual ~Ice();
 		std::string const & getType() const;
 		AMateria* clone() const;
 		void use(ICharacter& target);

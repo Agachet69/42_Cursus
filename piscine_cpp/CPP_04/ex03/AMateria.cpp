@@ -6,13 +6,13 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 17:16:22 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/11 16:26:40 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/28 17:37:05 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
-AMateria::AMateria()
+AMateria::AMateria() : _type("Default")
 {
 	return ;
 }
@@ -25,6 +25,21 @@ AMateria::AMateria(std::string const &type) : _type(type)
 AMateria::~AMateria()
 {
 	return ;
+}
+
+AMateria::AMateria(AMateria const &copy)
+{
+	*this = copy;
+	return ;
+}
+
+AMateria	&AMateria::operator=(AMateria const &assignation)
+{
+	if (this != &assignation)
+	{
+		this->_type = assignation._type;
+	}
+	return (*this);
 }
 
 std::string const &AMateria::getType() const

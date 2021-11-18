@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:20:55 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/11 16:55:54 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/27 18:16:13 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 Cat::Cat() : Animal()
 {
+	this->type = "Cat";
 	std::cout << "Construction Cat Class" << std::endl;
 	this->_Brain = new Brain();
 	return ;

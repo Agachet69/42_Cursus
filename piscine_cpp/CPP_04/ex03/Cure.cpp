@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CUre.cpp                                           :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 14:49:00 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/06 17:27:16 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/04 15:08:39 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 
-Cure::Cure() : _type("cure")
+Cure::Cure() : 	AMateria("cure")
+
 {
 	return ;
 }
 
-Cure::Cure(std::string const &type) : _type(type)
+Cure::Cure(std::string const &type) : AMateria("cure")
 {
+	this->_type = type;
 	return ;
 }
 

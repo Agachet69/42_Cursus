@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:55:50 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/23 18:12:00 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/26 18:36:12 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 class Fixed
 {
 	public:
+		Fixed(void);
 		Fixed(const int);
 		Fixed(const float);
-		Fixed(void);
 		Fixed(const Fixed& copy);
 		~Fixed(void);
 

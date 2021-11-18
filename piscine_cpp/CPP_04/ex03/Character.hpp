@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 17:22:56 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/06 17:27:04 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/29 19:38:54 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 class Character : public ICharacter
 {
 	public:
+		Character();
 		Character(std::string name);
+		Character(Character const &copy);
 		~Character();
 
 		std::string const &getName() const;

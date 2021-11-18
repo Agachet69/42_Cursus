@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 18:50:34 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/11 16:06:20 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/29 18:56:49 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,10 @@ int main()
 		tab[i] = new Dog;
 	for (int i = 0; i < 100; i++)
 		delete tab[i];
-	delete tab;
+
+	std::cout << "\n\n\n\n" << std::endl;
+	Dog basic;
+	{
+		Dog tmp = basic;
+	}
 }

@@ -6,7 +6,7 @@
 #    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/17 18:01:59 by agachet           #+#    #+#              #
-#    Updated: 2021/09/17 18:08:35 by agachet          ###   ########.fr        #
+#    Updated: 2021/10/26 17:36:08 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ OBJS	= $(SRCS:.cpp=.o)
 FLAGS	= -Wall -Wextra -Werror
 
 %.o:	%.cpp
-		$(CC) $(CFLAGS) -c $< -o $@
+		$(CC) $(FLAGS) -c $< -o $@
 
 all:		$(NAME)
 
 $(NAME)	:	$(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
 		@rm -f $(OBJS)

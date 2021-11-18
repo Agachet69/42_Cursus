@@ -6,7 +6,7 @@
 #    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/31 14:10:39 by agachet           #+#    #+#              #
-#    Updated: 2021/06/03 15:50:17 by agachet          ###   ########.fr        #
+#    Updated: 2021/06/24 18:40:57 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		=	minishell
 
 SRCS_PATH	=	srcs
 
-SRCS_NAME	=	main.c utils.c ft_path.c ft_builtin.c ft_list.c ft_export.c
+SRCS_NAME	=	main.c utils.c ft_path.c ft_builtin.c ft_list.c ft_export.c \
+				ft_unset.c ft_exec.c
 
 OBJS		=	$(PATH:.c=.o)
 
@@ -28,7 +29,7 @@ PATH		=	$(addprefix $(SRCS_PATH)/,$(SRCS_NAME))
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			gcc $(FLAGS) $(OBJS) -o $(NAME)
+			gcc $(FLAGS) $(OBJS) -o $(NAME) -lreadline
 
 clean:
 			rm -f $(OBJS)

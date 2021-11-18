@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:13:35 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/13 19:36:33 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/08 14:32:07 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ class Form
 	public:
 		Form();
 		Form(std::string name, int Gsign, int Gexec);
-		Form(Form const &copy);
 		virtual ~Form();
-		Form	&operator=(Form const &);
 
 		std::string getName()const;
 		int getGsign()const;

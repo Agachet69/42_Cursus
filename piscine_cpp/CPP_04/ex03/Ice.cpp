@@ -6,19 +6,20 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 20:01:25 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/06 17:28:47 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/04 15:09:14 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
-Ice::Ice() : _type("ice")
+Ice::Ice() : AMateria("ice")
 {
 	return ;
 }
 
-Ice::Ice(std::string const &type) : _type(type)
+Ice::Ice(std::string const &type) : AMateria("ice")
 {
+	this->_type = type;
 	return ;
 }
 

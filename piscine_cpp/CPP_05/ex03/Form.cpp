@@ -6,16 +6,11 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:06:22 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/13 19:36:27 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/04 20:28:10 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
-
-//Form::Form()
-//{
-//	return ;
-//}
 
 Form::Form(std::string name, int Gsign, int Gexec) : _name(name), _Gsign(Gsign), _Gexec(Gexec)
 {
@@ -27,26 +22,14 @@ Form::Form(std::string name, int Gsign, int Gexec) : _name(name), _Gsign(Gsign),
 	return ;
 }
 
-//Form::Form(Form const &copy)
-//{
-//	(*this) = copy;
-//}
-
-Form::~Form()
+Form::Form() : _name("Default"), _Gsign(0), _Gexec(0)
 {
 	return ;
 }
 
-Form	&Form::operator=(Form const &assignation)
+Form::~Form()
 {
-	if (this != &assignation)
-	{
-		this->_sign = assignation._sign;
-		//this->_name = assignation._name;
-		//this->_Gexec = assignation._Gexec;
-		//this->_Gsign = assignation._Gsign;
-	}
-	return (*this);
+	return ;
 }
 
 std::string	Form::getName() const
@@ -113,4 +96,3 @@ Form	&Form::beSigned(Bureaucrat &b)
 	}
 	return (*this);
 }
-

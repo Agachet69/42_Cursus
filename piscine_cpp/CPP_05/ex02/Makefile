@@ -6,15 +6,15 @@
 #    By: agachet <agachet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 19:59:42 by agachet           #+#    #+#              #
-#    Updated: 2021/10/14 16:18:11 by agachet          ###   ########.fr        #
+#    Updated: 2021/11/04 20:32:40 by agachet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	Bureaucrat
+NAME	=	FormType
 
 CC		=	clang++
 
-FLAGS	=	Werror Wextra Wall
+FLAGS	=	-Werror -Wextra -Wall
 
 SRCS	=	main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp\
 			ShrubberyCreationForm.cpp
@@ -22,12 +22,12 @@ SRCS	=	main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyReque
 OBJS	=	$(SRCS:.cpp=.o)
 
 %.o:	%.cpp
-		@$(CC) $(CFLAGS) -c $< -o $@
+		@$(CC) $(FLAGS) -c $< -o $@
 
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 			@echo [$(NAME)]
 
 clean:
@@ -36,6 +36,7 @@ clean:
 
 fclean:
 		@rm -f $(OBJS) $(NAME)
+		@rm -f *_shrubbery
 		@echo [FCLEAN]
 
 re:		fclean all

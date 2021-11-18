@@ -6,9 +6,10 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:11:33 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/13 20:37:54 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/04 20:29:41 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef PRESIDENTIALPARDONFORM_HPP
 #define PRESIDENTIALPARDONFORM_HPP
@@ -24,9 +25,12 @@ class PresidentialPardonForm : public Form
 		std::string _target;
 
 	public:
+		PresidentialPardonForm();
 		PresidentialPardonForm(std::string target);
+		PresidentialPardonForm(PresidentialPardonForm const &copy);
 		~PresidentialPardonForm();
 
+		PresidentialPardonForm &operator=(PresidentialPardonForm const&);
 
 		void	execute(Bureaucrat const & executor) const;
 };

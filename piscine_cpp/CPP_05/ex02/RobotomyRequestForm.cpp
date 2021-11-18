@@ -6,20 +6,37 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:11:12 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/14 18:35:56 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/04 20:19:27 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("RobotomyRequestForm", 72, 45), _target(target), i(0)
+RobotomyRequestForm::RobotomyRequestForm() : Form(), _target("Default")
 {
 	return ;
+}
+
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("RobotomyRequestForm", 72, 45), _target(target)
+{
+	return ;
+}
+
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &copy)
+{
+	*this = copy;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
 	return ;
+}
+
+RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &ass)
+{
+	if (&ass != this)
+		this->_target = ass._target;
+	return (*this);
 }
 
 void	RobotomyRequestForm::execute(Bureaucrat const & executor) const

@@ -6,62 +6,115 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 19:25:32 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/20 19:22:19 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/10 17:22:27 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
+Span::Span()
+{
+	this->_n = 0;
+	this->_space = 0;
+	this->_store = new std::vector<int>[0];
+	return ;
+}
+
 Span::Span(unsigned int n) : _n(n)
 {
-	std::vector<int> store(n);
-	this->_store = store;
+	this->_n = n;
+	this->_space = 0;
+	this->_store = new std::vector<int>[this->_n];
+	return ;
 }
 
 Span::~Span()
 {
+	delete [] this->_store;
 	return ;
 }
 
 void	Span::addNumber(int number)
 {
-	int i;
-	for (i = 0; (i < _n) && this->_store[i] != 0; i++)
-		;
-	if (this->_store.size() <= this->_n)
-		this->_store[i] = number;
-	else
-		throw std::length_error("We can't add a new number there are already all of them stored.");
-		//std::cout << "renvoyer une exception" << std::endl;
+	try
+	{
+		if (this->_space == this->_n)
+			throw numberExceptionFull();
+		this->_store->push_back(number);
+		this->_space++;
+	}
+	catch(numberExceptionFull& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+}
+
+void	Span::addRange(std::vector<int>::const_iterator it, std::vector<int>::const_iterator ite)
+{
+	while (it < ite)
+	{
+		if (this->_space == this->_n)
+			throw numberExceptionFull();
+		this->_store->push_back(*it);
+		it++;
+		this->_space++;
+	}
 }
 
 int	Span::longestSpan()
 {
 	int ret;
 
-	if (this->_store.size() < 2)
+	if (this->_store->size() < 2)
 		throw std::length_error("not enough numbers.");
 	std::vector<int>::iterator it;
-	it = this->_store.begin();
-	ret = *it;
-	for (it = this->_store.begin(); it != this->_store.end(); ++it)
-		if (ret < (*it))
-			ret = *it;
+	std::vector<int>::iterator it2;
+	it = this->_store->begin();
+	ret = 0;
+	for (it = this->_store->begin(); it != this->_store->end(); ++it)
+	{
+		for (it2 = it + 1; it2 != this->_store->end(); it2++)
+		{
+			int tmp = *it - *it2;
+			if (tmp < 0)
+				tmp *= -1;
+			if (ret < tmp)
+				ret = tmp;
+		}
+	}
 	return ret;
-
 }
 
 int	Span::shortestSpan()
 {
 	int ret;
 
-	if (this->_store.size() < 2)
+	if (this->_store->size() < 2)
 		throw std::length_error("not enough numbers.");
 	std::vector<int>::iterator it;
-	it = this->_store.begin();
-	ret = *it;
-	for (it = this->_store.begin(); it != this->_store.end(); ++it)
-		if (ret > (*it))
-			ret = *it;
+	std::vector<int>::iterator it2;
+	it = this->_store->begin();
+	ret = 2147483647;
+	for (it = this->_store->begin(); it != this->_store->end(); ++it)
+	{
+		for (it2 = it + 1; it2 != this->_store->end(); it2++)
+		{
+			int tmp = *it - *it2;
+			if (tmp < 0)
+				tmp *= -1;
+			if (ret > tmp)
+				ret = tmp;
+		}
+	}
 	return ret;
+}
+
+const char *Span::numberExceptionEmpty::what() const throw()
+{
+	return ("it's empty or just one number");
+}
+
+const char *Span::numberExceptionFull::what() const throw()
+{
+	return ("it's full");
 }

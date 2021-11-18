@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cat.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:39:15 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/05 15:27:59 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/29 18:43:33 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Cat : public Animal
 		Cat	&operator=(Cat const &);
 		virtual ~Cat();
 
-		void makeSound() const;
+		virtual void makeSound() const;
 		std::string getType() const;
 
 	protected:

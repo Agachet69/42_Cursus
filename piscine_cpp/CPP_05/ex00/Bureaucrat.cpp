@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:23:25 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/07 19:53:31 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/02 17:15:58 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@ Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &assignation)
 
 void	Bureaucrat::Increment()
 {
-	this->_grade--;
-	if (this->_grade < 1)
+	if ((this->_grade -1) < 1)
+	{
 		throw Bureaucrat::GradeTooHighException();
+		return ;
+	}
+	this->_grade--;
 }
 
 void	Bureaucrat::Decrement()

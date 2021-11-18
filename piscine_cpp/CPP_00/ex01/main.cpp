@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:27:37 by agachet           #+#    #+#             */
-/*   Updated: 2021/09/16 19:24:06 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/26 15:23:16 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main()
 	Repertoire aa[8];
 
 	i = -1;
-	while (std::cout << "-> ENTEZ 'ADD' 'SEARCH' ou 'EXIT': " \
+	while (std::cout << "-> ENTREZ 'ADD' 'SEARCH' ou 'EXIT': " \
 	&& std::getline (std::cin, str) && str.compare("EXIT") != 0)
 	{
 		if (str.compare("ADD") == 0)

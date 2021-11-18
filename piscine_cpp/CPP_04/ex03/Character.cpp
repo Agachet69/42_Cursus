@@ -6,11 +6,13 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 18:28:50 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/06 17:26:51 by agachet          ###   ########.fr       */
+/*   Updated: 2021/10/29 19:43:55 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
+#include "Cure.hpp"
+#include "Ice.hpp"
 
 Character::Character(std::string name) : _name(name)
 {
@@ -18,6 +20,30 @@ Character::Character(std::string name) : _name(name)
 
 	for (i = 0; i < 4; i++)
 		this->Inventory[i] = 0;
+	return ;
+}
+
+Character::Character() : _name("Default")
+{
+	int i;
+
+	for (i = 0; i < 4; i++)
+		this->Inventory[i] = 0;
+	return ;
+}
+
+Character::Character(Character const &copy)
+{
+	int i;
+	this->_name = copy._name;
+	for (i = 0; i < 4; i++)
+	{
+		if (copy.Inventory[i]->getType() == "cure")
+			this->Inventory[i] = new Cure;
+		else if (copy.Inventory[i]->getType() == "ice")
+			this->Inventory[i] = new Ice;
+	}
+
 	return ;
 }
 
@@ -40,9 +66,11 @@ void		Character::equip(AMateria *m)
 	int i;
 
 	for (i = 0; ((this->Inventory[i] != 0) && i < 4); i++)
-		this->Inventory[i] = 0;
+		;
 	if ((i < 4) && (m))
+	{
 		this->Inventory[i] = m;
+	}
 }
 
 void		Character::unequip(int idx)
@@ -55,5 +83,6 @@ void		Character::use(int idx, ICharacter &target)
 {
 	if ((idx >= 0 && idx < 4) && this->Inventory[idx] != 0)
 		this->Inventory[idx]->use(target);
+
 	return ;
 }

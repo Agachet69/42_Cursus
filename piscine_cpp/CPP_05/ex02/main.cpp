@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:24:12 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/14 16:46:15 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/09 15:55:03 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,20 @@ int main()
 	{
 		std::cerr << e.what() << '\n' << std::endl;
 	}
+
+	std::cout << "|||||||||||||||||||||||||||||||| TEST 4 ||||||||||||||||||||||||||" << std::endl;
+
+		Bureaucrat Btest4("Damien", 148);
+		Bureaucrat Btest44("Benard", 140);
+		Form	*Ftest44 = new ShrubberyCreationForm("Jardin");
+	try
+	{
+		Ftest44->beSigned(Btest4);
+		Btest44.executeForm(*Ftest44);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+		delete Ftest44;
 }

@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:58:26 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/13 16:02:18 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/04 19:51:46 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ class Bureaucrat
 
 		Bureaucrat	&operator=(const Bureaucrat &);
 
-		std::string	getName() const;
-		int			getGrade() const;
+		virtual std::string	getName() const;
+		virtual int			getGrade() const;
 		void		Increment();
 		void		Decrement();
 		void		SignForm(Form &);

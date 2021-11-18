@@ -6,16 +6,11 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:06:22 by agachet           #+#    #+#             */
-/*   Updated: 2021/10/13 17:27:58 by agachet          ###   ########.fr       */
+/*   Updated: 2021/11/04 20:02:33 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
-
-//Form::Form()
-//{
-//	return ;
-//}
 
 Form::Form(std::string name, int Gsign, int Gexec) : _name(name), _Gsign(Gsign), _Gexec(Gexec)
 {
@@ -27,44 +22,32 @@ Form::Form(std::string name, int Gsign, int Gexec) : _name(name), _Gsign(Gsign),
 	return ;
 }
 
-//Form::Form(Form const &copy)
-//{
-//	(*this) = copy;
-//}
+Form::Form() : _name("Default"), _Gsign(0), _Gexec(0)
+{
+	return ;
+}
 
 Form::~Form()
 {
 	return ;
 }
 
-Form	&Form::operator=(Form const &assignation)
-{
-	if (this != &assignation)
-	{
-		this->_sign = assignation._sign;
-		//this->_name = assignation._name;
-		//this->_Gexec = assignation._Gexec;
-		//this->_Gsign = assignation._Gsign;
-	}
-	return (*this);
-}
-
-std::string	Form::getName()
+std::string	Form::getName() const
 {
 	return (this->_name);
 }
 
-int Form::getGsign()
+int Form::getGsign() const
 {
 	return (this->_Gsign);
 }
 
-int Form::getGexec()
+int Form::getGexec() const
 {
 	return (this->_Gexec);
 }
 
-int Form::getSign()
+int Form::getSign() const
 {
 	return (this->_sign);
 }
@@ -83,12 +66,12 @@ std::ostream	&operator<<(std::ostream &o, Form &Cls)
 
 const char *Form::GradeTooHighException::what() const throw()
 {
-	return ("Grade too high !");
+	return ("Grade Form too high !");
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return ("Grade too low !");
+	return ("Grade Form too low !");
 }
 
 Form	&Form::beSigned(Bureaucrat &b)
@@ -98,9 +81,7 @@ Form	&Form::beSigned(Bureaucrat &b)
 		b.SignForm(*this);
 		throw Form::GradeTooLowException();
 	}
-	else if (b.getGrade() < 1)
-		throw Form::GradeTooLowException();
-	else if (this->getGsign() >= b.getGrade())
+	else
 	{
 		this->_sign = 1;
 		b.SignForm(*this);
