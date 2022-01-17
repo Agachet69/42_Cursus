@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 16:40:33 by agachet           #+#    #+#             */
-/*   Updated: 2022/01/13 20:37:08 by agachet          ###   ########.fr       */
+/*   Updated: 2022/01/17 21:12:49 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ namespace ft
 			{
 				size_type	pos_f = first - _tab;
 				size_type	pos_l = last - _tab;
-				std::cout << pos_f << " | " << pos_l << std::endl;
 				this->_capacity = pos_l - pos_f - 1;
 				this->_taille = this->_capacity;
 				this->_tab = _alloc.allocate(this->_capacity);
@@ -281,18 +280,20 @@ namespace ft
 				this->_taille = n;
 			}
 
-			//template <class InputIterator>
-  			//void assign (InputIterator first, InputIterator last)
-			//{
+  			void assign (iterator first, iterator last)
+			{
+				size_type	pos_f = first - _tab;
+				size_type	pos_l = last - _tab;
+				size_type	size = pos_l - pos_f;
 
-			//	// comment tester
-			//}
-			//void	ft_space_free()
-			//{
-			//	//for (int i = 0; i < _taille; i++)
-			//	//	_alloc.destroy(&tmp[i]);
-			//	_alloc.deallocate(tmp, this->_capacity);
-			//}
+				_alloc.deallocate(_tab, this->_capacity);
+				if (this->_capacity < size)
+					this->_capacity = (size);
+				this->_tab = get_allocator().allocate(_capacity);
+				for (int i = 0; first != last; first++)
+					this->_tab[i++] = *first;
+				this->_taille = (size);
+			}
 
 			void push_back (const value_type& val)
 			{
@@ -311,11 +312,11 @@ namespace ft
 				this->_taille--;
 			}
 
-			//template <class InputIterator>
-			//void insert (iterator position, InputIterator first, InputIterator last)
-			//{
 
-			//}
+			void insert (iterator position, iterator first, iterator last)
+			{
+
+			}
 
 			void	insert_not_alloc(iterator position, const value_type& val)
 			{

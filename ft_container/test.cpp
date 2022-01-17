@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:50:06 by agachet           #+#    #+#             */
-/*   Updated: 2022/01/13 19:34:08 by agachet          ###   ########.fr       */
+/*   Updated: 2022/01/17 20:36:29 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,47 +18,45 @@
 int main()
 {
 
-//	std::vector<int> test(8, 15);
-	//std::vector<int> test3(20, 150);
+	std::vector<int> test(8, 9);
+	std::vector<int> test3(30, 8);
 
-//	test.push_back(5);
+	test.push_back(5);
 
-	//test.clear();
-	//std::cout <<	test.capacity() << std::endl;
-	//std::cout <<	test.size() << std::endl;
+	std::vector<int>::iterator it = test.begin();
+	std::vector<int>::iterator ite = test.end();
+	--ite;
 
-	//for (std::vector<int>::reverse_iterator it = test.rbegin(); it != test.rend(); ++it)
-	//	std::cout << " " << *it;
+	test3.assign(it, ite);
+
+	for (it = test3.begin(); it != test3.end(); ++it)
+		std::cout << " " << *it;
+		std::cout << "\n" << test3.capacity();
+		std::cout << "\n" << test3.size();
+
 	//	std::cout << std::endl;
 //	std::cout << " \n";
 
 
 //	std::cout << "\n ........................... MY VECTOR ................................... \n" << std::endl;
 
-	ft::vector<int> test2(4, 7);
-	test2.push_back(15);
-	ft::vector<int>::iterator ite = test2.begin();
-	ft::vector<int>::iterator it = test2.end();
+		std::cout << "\n\n\n\n\n\n";
 
+	ft::vector<int> test9(8, 9);
+	ft::vector<int> test4(30, 8);
 
-	//for (ft::vector<int>::iterator iteee = test2.begin(); iteee != test2.end(); ++iteee)
-	//	std::cout << " " << *iteee;
+	test9.push_back(5);
 
+	ft::vector<int>::iterator itm = test9.begin();
+	ft::vector<int>::iterator item = test9.end();
+	--item;
 
-	ft::vector<int> test3(ite, it);
+	test4.assign(itm, item);
 
-
-
-	for (ft::vector<int>::iterator itee = test3.begin(); itee != test3.end(); ++itee)
-		std::cout << " " << *itee << itee;
-	ft::vector<int> test4(test3);
-	std::cout << std::endl;
-
-	for (ft::vector<int>::iterator itt = test4.begin(); itt != test4.end(); ++itt)
-		std::cout << " " << *itt << itt;
-	//test3 = test;
-	//std::cout <<	test3.capacity() << std::endl;
-	//std::cout <<	test3.size() << std::endl;
+	for (itm = test4.begin(); itm != test4.end(); ++itm)
+		std::cout << " " << *itm;
+		std::cout << "\n" << test4.capacity();
+		std::cout << "\n" << test4.size();
 
 
 	//for (std::vector<int>::iterator it = test.begin(); it != test.end(); ++it)
