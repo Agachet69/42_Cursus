@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 16:40:33 by agachet           #+#    #+#             */
-/*   Updated: 2021/12/23 19:13:15 by agachet          ###   ########.fr       */
+/*   Updated: 2022/01/13 20:37:08 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #include <string>
 #include <vector>
 #include <stack>
+#include "reverse_iterator.hpp"
+
+
 
 namespace ft
 {
@@ -30,6 +33,10 @@ namespace ft
 			typedef value_type*									pointer;
 			typedef value_type*									iterator;
 			typedef const value_type*							const_iterator;
+			typedef reverse_iterator<const_iterator>			const_reverse_iterator;
+			typedef reverse_iterator<iterator>					reverse_iterator;
+			//typedef value_type*								reverse_iterator;
+			//typedef const value_type*							const_reverse_iterator;
 			typedef value_type&									reference;
 			typedef const value_type&							const_reference;
 			typedef size_t										size_type;
@@ -59,21 +66,27 @@ namespace ft
 					_tab[i] = val;
 			}
 
-			//vector (const vector& x)
-			//{
-			//	int i = -1;
+			vector (iterator first, iterator last, const allocator_type& alloc = allocator_type())
+			{
+				size_type	pos_f = first - _tab;
+				size_type	pos_l = last - _tab;
+				std::cout << pos_f << " | " << pos_l << std::endl;
+				this->_capacity = pos_l - pos_f - 1;
+				this->_taille = this->_capacity;
+				this->_tab = _alloc.allocate(this->_capacity);
+				for (int i = 0; first != last; ++first)
+					this->_tab[i++] = *first;
+			}
 
-			//	this->_taille = x._taille;
-			//	this->_tab = new value_type(x._taille);
-			//	while (++i < this->_taille)
-			//		this->_tab[i] = x._tab[i];
-			//}
-
-			//vector (InputIterator first, InputIterator last/*, const allocator_type& alloc = allocator_type()*/)
-			//{
-			//	int i = 0;
-			//	//while
-			//}
+			vector (const vector& x)
+			{
+				this->_taille = x._taille;
+				this->_capacity = x._capacity;
+				this->_alloc = x._alloc;
+				this->_tab = _alloc.allocate(this->_capacity);
+				for (int i = 0; i < this->_taille; i++)
+					this->_tab[i] = x._tab[i];
+			}
 
 			~vector()
 			{
@@ -100,9 +113,39 @@ namespace ft
 				return (this->_tab);
 			}
 
+			const_iterator begin() const
+			{
+				return (this->_tab);
+			}
+
 			iterator end()
 			{
 				return (this->_tab + this->_taille);
+			}
+
+			const_iterator end() const
+			{
+				return (this->_tab);
+			}
+
+			reverse_iterator rbegin()
+			{
+				return (reverse_iterator(this->end()));
+			}
+
+			const_reverse_iterator rbegin() const
+			{
+				return (const_reverse_iterator(this->end()));
+			}
+
+			reverse_iterator rend()
+			{
+				return (reverse_iterator(this->begin()));
+			}
+
+			reverse_iterator rend() const
+			{
+				return (const_reverse_iterator(this->begin()));
 			}
 
 			//..................................... Capacity .........................................
@@ -177,7 +220,19 @@ namespace ft
 				return (this->_tab[n]);
 			}
 
+			const_reference operator[] (size_type n) const
+			{
+				return (this->_tab[n]);
+			}
+
 			reference at (size_type n)
+			{
+				if (n < 0 || n >= this->_taille)
+					throw std::out_of_range ("out");
+				return (this->_tab[n]);
+			}
+
+			const_reference at (size_type n) const
 			{
 				if (n < 0 || n >= this->_taille)
 					throw std::out_of_range ("out");
@@ -189,7 +244,17 @@ namespace ft
 				return (this->_tab[0]);
 			}
 
+			const_reference front() const
+			{
+				return (this->_tab[0]);
+			}
+
 			reference back()
+			{
+				return (this->_tab[this->_taille - 1]);
+			}
+
+			const_reference back() const
 			{
 				return (this->_tab[this->_taille - 1]);
 			}
