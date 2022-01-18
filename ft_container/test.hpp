@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 16:40:33 by agachet           #+#    #+#             */
-/*   Updated: 2022/01/17 21:12:49 by agachet          ###   ########.fr       */
+/*   Updated: 2022/01/18 19:35:23 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,11 @@ namespace ft
 			typedef const value_type*							const_iterator;
 			typedef reverse_iterator<const_iterator>			const_reverse_iterator;
 			typedef reverse_iterator<iterator>					reverse_iterator;
-			//typedef value_type*								reverse_iterator;
-			//typedef const value_type*							const_reverse_iterator;
 			typedef value_type&									reference;
 			typedef const value_type&							const_reference;
 			typedef size_t										size_type;
 			typedef ptrdiff_t									difference_type;
 			typedef Allocator									allocator_type;
-			//typedef typename allocator_type::reference			reference;
-			//typedef typename allocator_type::const_reference	const_reference;
-			//typedef typename allocator_type::size_type			size_type;
-			//typedef typename allocator_type::difference_type	difference_type;
-			//typedef typename allocator_type::pointer			pointer;
-			//typedef typename allocator_type::const_pointer		const_pointer;
 
 			explicit vector (const allocator_type &alloc = allocator_type()): _alloc(alloc)
 			{
@@ -312,10 +304,36 @@ namespace ft
 				this->_taille--;
 			}
 
-
 			void insert (iterator position, iterator first, iterator last)
 			{
+				size_type	size = (last - _tab) - (first - _tab);
+				size_type	prev_capa = this->_capacity;
+				value_type	*tmp = this->_tab;
+				size_type	pos = position - tmp;
+				int			i;
 
+				if (size > this->_capacity - this->_taille)
+				{
+					this->_tab = _alloc.allocate(_capacity * 2);
+					this->_capacity *= 2;
+				}
+				else
+					this->_tab = _alloc.allocate(_capacity);
+				for (i = -1; pos != i; i++)
+					this->_tab[i] = tmp[i];
+				while (first != last)
+				{
+					this->_tab[i++] = *first;
+					first++;
+				}
+				while (pos < this->_taille)
+				{
+					this->_tab[pos + size] = tmp[pos];
+					pos++;
+				}
+				if (size > this->_capacity - this->_taille)
+					_alloc.deallocate(tmp, prev_capa);
+				this->_taille += size;
 			}
 
 			void	insert_not_alloc(iterator position, const value_type& val)
@@ -529,6 +547,78 @@ namespace ft
 			size_type		_capacity;
 			allocator_type	_alloc;
 	};
+
+			//..................................... Relational Operators ................................
+
+			template <class T, class Alloc>
+			bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+			{
+				if (lhs.size() != rhs.size())
+					return (0);
+				for (size_t i = 0; i < lhs.size(); i++)
+				{
+					if (lhs[i] != rhs[i])
+						return (0);
+				}
+				return (1);
+			}
+
+			template <class T, class Alloc>
+			bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+			{
+				if (lhs.size() != rhs.size())
+					return (1);
+				for (size_t i = 0; i < lhs.size(); i++)
+				{
+					if (lhs[i] != rhs[i])
+						return (1);
+				}
+				return (0);
+			}
+
+			template <class T, class Alloc>
+			bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+			{
+				return (std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+			}
+
+			template <class T, class Alloc>
+			bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+			{
+				return ((lhs < rhs) || (lhs == rhs));
+			}
+
+			template <class T, class Alloc>
+			bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+			{
+				return (!(lhs < rhs) && lhs != rhs);
+			}
+
+			template <class T, class Alloc>
+			bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+			{
+				return ((lhs > rhs) || (lhs == rhs));
+			}
+
+			//..................................... Swap ...............................................
+			template <class T, class Alloc>
+			void swap (vector<T,Alloc>& x, vector<T,Alloc>& y)
+			{
+				size_t tmp_capa = x._capacity;
+				size_t tmp_taille = x._taille;
+				T *tmp = x._tab;
+				Alloc tmp_alloc =  x._alloc;
+
+				x._capacity = y.capacity;
+				x._taille = y._taille;
+				x._tab = y._tab;
+				x._alloc = y._alloc;
+
+				y._capacity = tmp_capa;
+				y._taille = tmp_taille;
+				y._tab = tmp;
+				y._alloc = tmp_alloc;
+			}
 }
 
 
