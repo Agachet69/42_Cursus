@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 16:40:33 by agachet           #+#    #+#             */
-/*   Updated: 2022/01/18 19:35:23 by agachet          ###   ########.fr       */
+/*   Updated: 2022/01/19 18:35:57 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,24 +336,6 @@ namespace ft
 				this->_taille += size;
 			}
 
-			void	insert_not_alloc(iterator position, const value_type& val)
-			{
-				int			k;
-				int			i = -1;
-				size_type	tmp = position - _tab;
-				size_type	tab[this->_taille + 1];
-
-				while (++i < tmp)
-					tab[i] = this->_tab[i];
-				k = i;
-				tab[i++] = val;
-				while (i < (this->_taille + 1))
-					tab[i++] = this->_tab[k++];
-				i = -1;
-				while (++i < (this->_taille + 1))
-					this->_tab[i] = tab[i];
-			}
-
 			iterator insert (iterator position, const value_type& val)
 			{
 				size_type	tmp = position - _tab;
@@ -383,24 +365,6 @@ namespace ft
 				return (ret);
 			}
 
-			void	insertn_not_alloc(iterator position, const value_type& val, size_type n)
-			{
-				int			k;
-				int			i = -1;
-				size_type	tmp = position - _tab;
-				size_type	tab[n + this->_taille];
-
-				while (++i < tmp)
-					tab[i] = this->_tab[i];
-				k = i;
-				while ((i - tmp) < n)
-					tab[i++] = val;
-				while (i < (this->_taille + n))
-					tab[i++] = this->_tab[k++];
-				i = -1;
-				while (++i < (this->_taille + n))
-					this->_tab[i] = tab[i];
-			}
 
 			void insert (iterator position, size_type n, const value_type& val)
 			{
@@ -546,6 +510,43 @@ namespace ft
 			size_type		_taille;
 			size_type		_capacity;
 			allocator_type	_alloc;
+
+		void	insert_not_alloc(iterator position, const value_type& val)
+		{
+			int			k;
+			int			i = -1;
+			size_type	tmp = position - _tab;
+			size_type	tab[this->_taille + 1];
+
+			while (++i < tmp)
+				tab[i] = this->_tab[i];
+			k = i;
+			tab[i++] = val;
+			while (i < (this->_taille + 1))
+				tab[i++] = this->_tab[k++];
+			i = -1;
+			while (++i < (this->_taille + 1))
+				this->_tab[i] = tab[i];
+		}
+
+		void	insertn_not_alloc(iterator position, const value_type& val, size_type n)
+		{
+			int			k;
+			int			i = -1;
+			size_type	tmp = position - _tab;
+			size_type	tab[n + this->_taille];
+
+			while (++i < tmp)
+				tab[i] = this->_tab[i];
+			k = i;
+			while ((i - tmp) < n)
+				tab[i++] = val;
+			while (i < (this->_taille + n))
+				tab[i++] = this->_tab[k++];
+			i = -1;
+			while (++i < (this->_taille + n))
+				this->_tab[i] = tab[i];
+		}
 	};
 
 			//..................................... Relational Operators ................................

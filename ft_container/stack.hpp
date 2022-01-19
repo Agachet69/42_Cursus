@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 19:32:39 by agachet           #+#    #+#             */
-/*   Updated: 2022/01/18 20:53:12 by agachet          ###   ########.fr       */
+/*   Updated: 2022/01/19 18:25:26 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,26 @@ namespace ft
 			c.pop_back();
 		}
 
-		container_type c;
+		template <class T1, class C1>
+		friend bool operator== (const stack<T1,C1>&, const stack<T1,C1>& );
+
+		template <class T1, class C1>
+		friend bool operator!= (const stack<T1,C1>&, const stack<T1,C1>& );
+
+		template <class T1, class C1>
+		friend bool operator< (const stack<T1,C1>&, const stack<T1,C1>& );
+
+		template <class T1, class C1>
+		friend bool operator<= (const stack<T1,C1>&, const stack<T1,C1>& );
+
+		template <class T1, class C1>
+		friend bool operator> (const stack<T1,C1>&, const stack<T1,C1>& );
+
+		template <class T1, class C1>
+		friend bool operator>= (const stack<T1,C1>&, const stack<T1,C1>& );
+
+		protected:
+			container_type c;
 	};
 
 // .......................................... Non-member function overloads ..........................................
@@ -75,7 +94,7 @@ namespace ft
 	}
 
 	template <class T, class Container>
-	bool operator<  (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
+	bool operator< (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
 	{
 		return (lhs.c < rhs.c);
 	}
@@ -87,7 +106,7 @@ namespace ft
 	}
 
 	template <class T, class Container>
-	bool operator>  (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
+	bool operator> (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
 	{
 		return (lhs.c > rhs.c);
 	}
