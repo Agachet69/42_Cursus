@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:50:06 by agachet           #+#    #+#             */
-/*   Updated: 2022/01/19 18:48:40 by agachet          ###   ########.fr       */
+/*   Updated: 2022/01/21 18:26:27 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,14 @@
 
 int main()
 {
-	ft::vector<int> test8;
-
-	ft::stack<int> test;
-	test.push(1);
-	test.push(5);
-	test.push(18);
-	std::cout << test.top();
-	test.pop();
-	std::cout << test.top();
+	std::map< std::string, int> test;
+	 std::pair <std::string,double> product1;
+	 product1 = std::make_pair(std::string("lightbulbs"),0.99);
+	 std::cout << product1.first << "\n";
+	std::cout << test.size();
 
 std::cout << "\n\n ........................... My Container ................................... \n" << std::endl;
 
-std::cout << "\n\n";
-
-ft::stack<int> test2;
-	test2.push(19);
-	test2.push(58);
-
-ft::stack<int> test3;
-	test3.push(194);
-	test3.push(588);
-
-bool i = test3 >= test2;
-	std::cout << i;
 
 
 }

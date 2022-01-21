@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 16:40:33 by agachet           #+#    #+#             */
-/*   Updated: 2022/01/19 18:35:57 by agachet          ###   ########.fr       */
+/*   Updated: 2022/01/20 17:03:38 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include <memory>
 #include <iostream>
 #include <string>
-#include <vector>
-#include <stack>
 #include "reverse_iterator.hpp"
 
 
