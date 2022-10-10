@@ -5,115 +5,85 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 19:32:39 by agachet           #+#    #+#             */
-/*   Updated: 2022/01/19 18:25:26 by agachet          ###   ########.fr       */
+/*   Created: 2022/09/24 03:56:01 by agachet           #+#    #+#             */
+/*   Updated: 2022/10/10 19:00:24 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.hpp"
+#ifndef STACK_HPP
+#define STACK_HPP
 
-namespace ft
-{
-	template< class T, class Container = ft::vector<T> >
-	class stack
-	{
+#include "vector.hpp"
 
-		public:
-			typedef T			value_type;
-			typedef Container	container_type;
-			typedef size_t		size_type;
+namespace ft {
 
-// .............................................. Member Functions ..........................................
+    template <class T, class Container = ft::vector<T> >
+    class stack {
 
-		explicit stack (const container_type& ctnr = container_type()) {}
+        typedef T           value_type;
+        typedef Container   container_type;
+        typedef size_t      size_type;
 
-		bool empty() const
-		{
-			return (c.empty());
-		}
+        public:
+            explicit stack (const container_type& ctnr = container_type()) : _container(ctnr) {}
 
-		size_type size() const
-		{
-			return (c.size());
-		}
+            bool empty() const {
+                return _container.empty();
+            }
 
-		value_type& top()
-		{
-			return (c.back());
-		}
+            size_type size() const {
+                return _container.size();
+            }
 
-		const value_type& top() const
-		{
-			return (c.back());
-		}
+            value_type& top() {
+                return _container.back();
+            }
 
-		void push (const value_type& val)
-		{
-			c.push_back(val);
-		}
+            const value_type& top() const {
+                return _container.back();
+            }
 
-		void pop()
-		{
-			c.pop_back();
-		}
+            void push (const value_type& val) {
+                _container.push_back(val);
+            }
 
-		template <class T1, class C1>
-		friend bool operator== (const stack<T1,C1>&, const stack<T1,C1>& );
+            void pop() {
+                _container.pop_back();
+            }
 
-		template <class T1, class C1>
-		friend bool operator!= (const stack<T1,C1>&, const stack<T1,C1>& );
+            template <class stack_t, class cont_t>
+			friend bool operator== (const stack<stack_t,cont_t>& lhs, const stack<stack_t,cont_t>& rhs) {
+				return (lhs._container == rhs._container);
+			}
 
-		template <class T1, class C1>
-		friend bool operator< (const stack<T1,C1>&, const stack<T1,C1>& );
+			template <class stack_t, class cont_t>
+			friend bool operator!= (const stack<stack_t,cont_t>& lhs, const stack<stack_t,cont_t>& rhs) {
+				return !(lhs._container == rhs._container);
+			}
 
-		template <class T1, class C1>
-		friend bool operator<= (const stack<T1,C1>&, const stack<T1,C1>& );
+			template <class stack_t, class cont_t>
+			friend bool operator< (const stack<stack_t,cont_t>& lhs, const stack<stack_t,cont_t>& rhs) {
+				return (lhs._container < rhs._container);
+			}
 
-		template <class T1, class C1>
-		friend bool operator> (const stack<T1,C1>&, const stack<T1,C1>& );
+			template <class stack_t, class cont_t>
+			friend bool operator<= (const stack<stack_t,cont_t>& lhs, const stack<stack_t,cont_t>& rhs) {
+				return (lhs._container <= rhs._container);
+			}
 
-		template <class T1, class C1>
-		friend bool operator>= (const stack<T1,C1>&, const stack<T1,C1>& );
+			template <class stack_t, class cont_t>
+			friend bool operator>  (const stack<stack_t,cont_t>& lhs, const stack<stack_t,cont_t>& rhs) {
+				return (lhs._container > rhs._container);
+			}
 
-		protected:
-			container_type c;
-	};
+			template <class stack_t, class cont_t>
+			friend bool operator>= (const stack<stack_t,cont_t>& lhs, const stack<stack_t,cont_t>& rhs) {
+				return (lhs._container >= rhs._container);
+			}
 
-// .......................................... Non-member function overloads ..........................................
-
-	template <class T, class Container>
-	bool operator== (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
-	{
-	    return (lhs.c == rhs.c);
-	}
-
-	template <class T, class Container>
-	bool operator!= (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
-	{
-		 return (lhs.c != rhs.c);
-	}
-
-	template <class T, class Container>
-	bool operator< (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
-	{
-		return (lhs.c < rhs.c);
-	}
-
-	template <class T, class Container>
-	bool operator<= (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
-	{
-		return (lhs.c <= rhs.c);
-	}
-
-	template <class T, class Container>
-	bool operator> (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
-	{
-		return (lhs.c > rhs.c);
-	}
-
-	template <class T, class Container>
-	bool operator>= (const stack<T,Container>& lhs, const stack<T,Container>& rhs)
-	{
-		return (lhs.c >= rhs.c);
-	}
+        protected:
+            container_type _container;
+    };
 }
+
+#endif
