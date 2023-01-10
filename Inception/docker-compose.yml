@@ -20,8 +20,6 @@ services:
     build: ./srcs/wordpress
     image: "mywordpress"
     container_name: mywordpress
-   #ports:
-   #  - "9000:9000"
     env_file: .env
     restart: always
     volumes:
@@ -35,8 +33,6 @@ services:
     container_name: mydb
     env_file: .env
     restart: always
-   #ports:
-   #  - "3306:3306"
     volumes:
       - "dbdata:/var/lib/mysql"
     networks:
@@ -45,6 +41,7 @@ services:
 volumes:
   mywordpress:
   dbdata:
+
 
 
 networks:

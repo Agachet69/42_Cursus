@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:59:55 by agachet           #+#    #+#             */
-/*   Updated: 2022/10/10 19:35:06 by agachet          ###   ########.fr       */
+/*   Updated: 2022/10/11 15:36:39 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -395,19 +395,6 @@ int main() {
         // std::cout << '\n';
 
     //////////////////////////////////////////////////////// TEST STACK /////////////////////////////////////////////////////////
-    /*                                                  ft::stack::constructor                                                 */
-
-		//std::deque<int> mydeque (3,100);          // deque with 3 elements
-        //ft::vector<int> myvector (2,200);        // vector with 2 elements
-        //ft::stack<int> first;                    // empty stack
-        //ft::stack<int> second (myvector);         // stack initialized to copy of deque
-        //ft::stack<int,ft::vector<int> > third;  // empty stack using vector
-        //ft::stack<int,ft::vector<int> > fourth (myvector);
-    	//std::cout << "size of first: " << first.size() << '\n';
-    	//std::cout << "size of second: " << second.size() << '\n';
-    	//std::cout << "size of third: " << third.size() << '\n';
-    	//std::cout << "size of fourth: " << fourth.size() << '\n';
-
     /*                                                      ft::stack::empty                                                   */
 
         // ft::stack<int> mystack;

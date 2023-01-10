@@ -6,7 +6,7 @@
 /*   By: agachet <agachet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 03:56:01 by agachet           #+#    #+#             */
-/*   Updated: 2022/10/10 19:00:24 by agachet          ###   ########.fr       */
+/*   Updated: 2022/10/11 15:33:49 by agachet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ namespace ft {
         typedef size_t      size_type;
 
         public:
-            explicit stack (const container_type& ctnr = container_type()) : _container(ctnr) {}
+            stack (const container_type& ctnr = container_type()) : _container(ctnr) {}
 
             bool empty() const {
                 return _container.empty();
